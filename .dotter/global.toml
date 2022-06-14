@@ -1,0 +1,14 @@
+[zsh.files]
+profiles = "~/.profiles/"
+"zsh/zshrc" = "~/.zshrc"
+
+[zsh.variables]
+theme = "robbyrussell"
+plugins = "git docker docker-compose aliases copybuffer copyfile command-not-found zsh-autosuggestions history"
+prompt_replacement = "${PROMPT/\\%c/\\%d}"
+editor = "nano"
+# the zshrc will automatically set JAVA_HOME and add the JDK to the path
+java_dir = "~/.jdks"
+
+[i3.files]
+i3 = "~/.config/i3"
