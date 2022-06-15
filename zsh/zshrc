@@ -22,9 +22,24 @@ export LANG=en_GB.UTF-8
 EDITOR="{{editor}}"
 alias zshconfig="$EDITOR {{dotter.current_dir}}/zsh/zshrc"
 alias ohmyzsh="$EDITOR {{dotter.current_dir}}/zsh/oh-my-zsh"
-alias dotfiles="cd {{dotter.current_dir}}"
 # make avaliable to all sessions as an environment variable
 DOTFILES_FOLDER="{{dotter.current_dir}}"
+
+function dotfiles() {
+  if [ "$1" != "" ]; then
+    if [ -d "{{dotter.current_dir}}/$1" ]; then
+      cd {{dotter.current_dir}}/$1
+      pwd
+    else
+      echo Directory \'$1\' not found.
+      return 1
+    fi
+  else
+    cd {{dotter.current_dir}}
+  fi
+  # show all files, except for "." and ".." (current / upper directory)
+  ls -a -I "." -I ".."
+}
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
