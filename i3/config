@@ -338,3 +338,8 @@ bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F
 
 # open nautilus when pressing $mod + E (0% windows inspired i swear!)
 bindsym $mod+e exec "nautilus"
+
+# hide borders when only one window is on the workspace
+hide_edge_borders both
+# hide title bar in non-stacked view
+for_window [class="^.*"] border pixel 1
