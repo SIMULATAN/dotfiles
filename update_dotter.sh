@@ -3,7 +3,7 @@
 # exit on error
 set -e
 
-if currl --version &>/dev/null
+if curl --version &>/dev/null
 then
   echo Using curl for HTTP Requests.
   HTTP_PROGRAM="curl"
