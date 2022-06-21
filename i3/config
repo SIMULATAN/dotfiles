@@ -1,5 +1,6 @@
-# use win
+# use win / super as main mod key
 set $mod Mod4
+# use alt as secondary mod key
 set $mod2 Mod1
 
 # set background image
@@ -16,11 +17,9 @@ font pango:monospace 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
+# the lock.sh script uses either i3lock-color or vanilla i3lock.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- "~/.config/i3/lock.sh" --no-fork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
@@ -38,9 +37,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 10"
 bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 10"
 
-# Flameshot
-bindsym Print exec --no-startup-id flameshot gui
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -49,12 +45,6 @@ bindsym $mod+t exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
-
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # switch to last workspace with Super + #Tab
 bindsym $mod+Tab workspace back_and_forth
@@ -90,7 +80,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Shift+s layout stacking
@@ -121,6 +111,16 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -133,6 +133,16 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+bindsym $mod2+1 workspace number $ws11
+bindsym $mod2+2 workspace number $ws12
+bindsym $mod2+3 workspace number $ws13
+bindsym $mod2+4 workspace number $ws14
+bindsym $mod2+5 workspace number $ws15
+bindsym $mod2+6 workspace number $ws16
+bindsym $mod2+7 workspace number $ws17
+bindsym $mod2+8 workspace number $ws18
+bindsym $mod2+9 workspace number $ws19
+bindsym $mod2+0 workspace number $ws20
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -145,6 +155,38 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod2+Shift+1 move container to workspace number $ws11
+bindsym $mod2+Shift+2 move container to workspace number $ws12
+bindsym $mod2+Shift+3 move container to workspace number $ws13
+bindsym $mod2+Shift+4 move container to workspace number $ws14
+bindsym $mod2+Shift+5 move container to workspace number $ws15
+bindsym $mod2+Shift+6 move container to workspace number $ws16
+bindsym $mod2+Shift+7 move container to workspace number $ws17
+bindsym $mod2+Shift+8 move container to workspace number $ws18
+bindsym $mod2+Shift+9 move container to workspace number $ws19
+bindsym $mod2+Shift+0 move container to workspace number $ws20
+
+# move focused container to workspace AND switch to that workspace
+bindsym $mod+Control+1 move container to workspace number $ws1; workspace number $ws1
+bindsym $mod+Control+2 move container to workspace number $ws2; workspace number $ws2
+bindsym $mod+Control+3 move container to workspace number $ws3; workspace number $ws3
+bindsym $mod+Control+4 move container to workspace number $ws4; workspace number $ws4
+bindsym $mod+Control+5 move container to workspace number $ws5; workspace number $ws5
+bindsym $mod+Control+6 move container to workspace number $ws6; workspace number $ws6
+bindsym $mod+Control+7 move container to workspace number $ws7; workspace number $ws7
+bindsym $mod+Control+8 move container to workspace number $ws8; workspace number $ws8
+bindsym $mod+Control+9 move container to workspace number $ws9; workspace number $ws9
+bindsym $mod+Control+0 move container to workspace number $ws10; workspace number $ws10
+bindsym $mod2+Control+1 move container to workspace number $ws11; workspace number $ws11
+bindsym $mod2+Control+2 move container to workspace number $ws12; workspace number $ws12
+bindsym $mod2+Control+3 move container to workspace number $ws13; workspace number $ws13
+bindsym $mod2+Control+4 move container to workspace number $ws14; workspace number $ws14
+bindsym $mod2+Control+5 move container to workspace number $ws15; workspace number $ws15
+bindsym $mod2+Control+6 move container to workspace number $ws16; workspace number $ws16
+bindsym $mod2+Control+7 move container to workspace number $ws17; workspace number $ws17
+bindsym $mod2+Control+8 move container to workspace number $ws18; workspace number $ws18
+bindsym $mod2+Control+9 move container to workspace number $ws19; workspace number $ws19
+bindsym $mod2+Control+0 move container to workspace number $ws20; workspace number $ws20
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -333,11 +375,17 @@ bar {
   status_command i3status -c ~/.config/i3/i3status.conf
 }
 
-# run dmenu
+# run dmenu (dracula theme)
 bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
 
-# open nautilus when pressing $mod + E (0% windows inspired i swear!)
-bindsym $mod+e exec "nautilus"
+# open explorer when pressing $mod + E (0% windows inspired i swear!)
+bindsym $mod+e exec "{{file_manager}}"
+
+# Screenshots
+bindsym Print exec --no-startup-id flameshot gui
+
+# Browser
+bindsym $mod+w exec --no-startup-id firefox
 
 # hide borders when only one window is on the workspace
 hide_edge_borders both

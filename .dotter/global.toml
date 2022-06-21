@@ -12,3 +12,6 @@ java_dir = "~/.jdks"
 
 [i3.files]
 i3 = "~/.config/i3"
+
+[i3.variables]
+file_manager = "nautilus"
