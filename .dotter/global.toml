@@ -15,3 +15,6 @@ i3 = "~/.config/i3"
 
 [i3.variables]
 file_manager = "nautilus"
+
+[neofetch.files]
+neofetch = "~/.config/neofetch"
