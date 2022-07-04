@@ -4,7 +4,10 @@ profiles = "~/.profiles/"
 
 [zsh.variables]
 theme = "robbyrussell"
-plugins = "git docker docker-compose aliases copybuffer copyfile command-not-found zsh-autosuggestions history"
+plugins = "git docker docker-compose aliases copybuffer copyfile command-not-found history"
+# add extra plugins here, for example local ones
+plugins_extra = ""
+# display '/home/user' instead of '~'
 prompt_replacement = "${PROMPT/\\%c/\\%d}"
 editor = "nano"
 # the zshrc will automatically set JAVA_HOME and add the JDK to the path
@@ -12,9 +15,19 @@ java_dir = "~/.jdks"
 
 [i3.files]
 i3 = "~/.config/i3"
+"i3/dunst" = "~/.config/dunst/dunstrc"
+"i3/volume.sh" = "~/.config/i3/volume.sh"
 
 [i3.variables]
 file_manager = "nautilus"
+terminal = "kitty"
+# will restart i3 once changes are detected IN THE GLOBAL CONTEXT
+# (will also restart if, say, the ZSH config changed)
+# only runs when the 'i3' package is enabled in the 'local.toml' file
+auto_restart_i3 = "false"
 
 [neofetch.files]
 neofetch = "~/.config/neofetch"
+
+[helpers]
+bool = ".dotter/helpers/bool.rhai"

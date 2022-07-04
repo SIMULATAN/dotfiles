@@ -11,7 +11,7 @@ COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="dd.mm.yyyy"
 
-plugins=({{plugins}})
+plugins=({{plugins}} {{plugins_extra}})
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#808080,italic"
 
@@ -19,7 +19,7 @@ source $ZSH/oh-my-zsh.sh
 
 export LANG=en_GB.UTF-8
 
-EDITOR="{{editor}}"
+export EDITOR="{{editor}}"
 alias zshconfig="$EDITOR {{dotter.current_dir}}/zsh/zshrc"
 alias ohmyzsh="$EDITOR {{dotter.current_dir}}/zsh/oh-my-zsh"
 # make avaliable to all sessions as an environment variable
@@ -27,7 +27,11 @@ DOTFILES_FOLDER="{{dotter.current_dir}}"
 
 function dotfiles() {
   if [ "$1" != "" ]; then
-    if [ -d "{{dotter.current_dir}}/$1" ]; then
+    if [ $(echo "$1" | tr '[:upper:]' '[:lower:]') = "github" ]; then
+      # run in subshell to prevent current shell from cd'ing into the dotfiles repo
+      (cd {{dotter.current_dir}} && export REPO=$(git config --get remote.origin.url) && if [ "$REPO" != "" ]; then xdg-open "$REPO" && echo "Opened '$REPO' in your Browser."; else echo No git repo found.; fi)
+      return 0
+    elif [ -d "{{dotter.current_dir}}/$1" ]; then
       cd {{dotter.current_dir}}/$1
       pwd
     else
@@ -52,13 +56,12 @@ then
 fi
 
 {{#if java_dir}}
-if [ "{{java_dir}}" != "" ] && [ -h "{{java_dir}}" ]
+if [ -d $(echo {{java_dir}}) ]
 then
   # get latest JDK in java_dir
-  export JAVA_HOME={{java_dir}}/$(ls {{java_dir}} | sed '/-/!{s/$/_/}' | sort -V | sed 's/_$//' | tail -1)
+  export JAVA_HOME={{java_dir}}/$(ls {{java_dir}} | sed '/-/!{s/$/_/}' | sort -V | sed 's/_$//' | tail -2)
   # add the bin dir of the found java home to the path
-  if [ -z $JAVA_HOME ]; then
-    echo JAJA: $JAVA_HOME
+  if [ ! -z $JAVA_HOME ]; then
     PATH=$PATH:$JAVA_HOME/bin
   fi
 fi
@@ -70,11 +73,16 @@ setopt HIST_IGNORE_SPACE
 # human readable format - very handy
 alias lh="ls -h"
 
+# like 'gss' (git status short), but with the branch name included
+alias gsb="git status -sb"
+
 # load plugins that are located like this: '~/.zsh-plugins/my-plugin/my-plugin.zsh'
 # KEEP AT END (zsh-syntax-highlighting requires this)
-for f in ~/.zsh-plugins/*; do
-  file="$f/"$(echo $f | rev | cut -f 1 -d / | rev)".zsh"
-  if [ -f $file ]; then
-    source $file
-  fi
-done
+if [ -d ~/.zsh-plugins ]; then
+  for f in ~/.zsh-plugins/*; do
+    file="$f/"$(echo $f | rev | cut -f 1 -d / | rev)".zsh"
+    if [ -f $file ]; then
+      source $file
+    fi
+  done
+fi
