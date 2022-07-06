@@ -22,6 +22,8 @@ function send_notification {
     volume=`get_volume`
     if [ "$(is_mute)" = "0" ]; then
         icon_name="{{dotter.current_dir}}/i3/notification-audio-volume-muted.svg"
+    elif [ "$volume" -eq "0" ]; then
+	icon_name="{{dotter.current_dir}}/i3/notification-audio-volume-silent.svg"
     elif [ "$volume" -lt "30" ]; then
         icon_name="{{dotter.current_dir}}/i3/notification-audio-volume-low.svg"
     elif [ "$volume" -lt "70" ]; then
