@@ -29,5 +29,18 @@ auto_restart_i3 = "false"
 [neofetch.files]
 neofetch = "~/.config/neofetch"
 
+[nvim.files]
+nvim = "~/.config/nvim"
+
+[kitty.files]
+kitty = "~/.config/kitty"
+
+[polybar.files]
+polybar = "~/.config/polybar"
+
+[polybar.variables]
+# get the right id by using 'xinput test-xi2 --root | grep \(KeyPress\) -A 1' and reading the "device" ou>
+keyboard_id = "AT Translated Set 2 keyboard"
+
 [helpers]
 bool = ".dotter/helpers/bool.rhai"
