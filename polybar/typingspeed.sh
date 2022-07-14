@@ -1,6 +1,11 @@
 #!/bin/sh
 # shellcheck disable=SC2016,SC2059
 
+# thanks to the original makers of this script!
+# https://github.com/polybar/polybar-scripts/tree/686f211546b77ced32a8487fe8c2a48f3b59c190/polybar-scripts/info-hackspeed
+# at the time of writing, this was made by:
+# x70b1, M1dgard, julthon and charles-victorio
+
 KEYBOARD_ID={{keyboard_id}}
 
 # cpm: characters per minute
