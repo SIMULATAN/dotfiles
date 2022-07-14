@@ -41,6 +41,8 @@ polybar = "~/.config/polybar"
 [polybar.variables]
 # get the right id by using 'xinput test-xi2 --root | grep \(KeyPress\) -A 1' and reading the "device" ou>
 keyboard_id = "AT Translated Set 2 keyboard"
+# get the right id by using 'ls -1 /sys/class/power_supply/'
+battery_id = "BAT1"
 
 [helpers]
 bool = ".dotter/helpers/bool.rhai"
