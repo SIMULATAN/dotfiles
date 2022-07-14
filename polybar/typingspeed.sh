@@ -6,7 +6,7 @@
 # at the time of writing, this was made by:
 # x70b1, M1dgard, julthon and charles-victorio
 
-KEYBOARD_ID={{keyboard_id}}
+KEYBOARD_ID="{{keyboard_id}}"
 
 # cpm: characters per minute
 # wpm: words per minute (1 word = 5 characters)
