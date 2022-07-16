@@ -1,0 +1,9 @@
+name: Update Dotter
+on: push
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Dotter
+        uses: SIMULATAN/update-dotter-action@main
