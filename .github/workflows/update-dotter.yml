@@ -7,3 +7,5 @@ jobs:
     steps:
       - name: Update Dotter
         uses: SIMULATAN/update-dotter-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
