@@ -21,6 +21,10 @@ i3 = "~/.config/i3"
 [i3.variables]
 file_manager = "nautilus"
 terminal = "kitty"
+# this will get added to the launch command (super + t)
+# use this to prevent picom from matching flags as the wm class name
+# this default value will open kitty in the directory that the current focused windows is in
+terminal_arguments = "`xcwd`"
 # will restart i3 once changes are detected IN THE GLOBAL CONTEXT
 # (will also restart if, say, the ZSH config changed)
 # only runs when the 'i3' package is enabled in the 'local.toml' file

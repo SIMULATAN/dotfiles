@@ -14,7 +14,8 @@ set smartcase " When searching (/), automatically switch to a case-sensitive sea
 set ttyfast " Boost speed by altering character redraw rates to your terminal
 set numberwidth=1 " Sets width of the 'gutter' column used for numbering to 0 (default 4)
 set encoding=utf8 " Set text encoding as utf8
-set clipboard=unnamed
+set clipboard^=unnamed,unnamedplus " sync with system clipboard
+
 set mouse=a
 
 set shiftwidth=4 " Use 4 spaces as tab size
@@ -50,12 +51,15 @@ let g:airline_theme='dracula'
 
 " plugins
 call plug#begin()
+Plug 'haya14busa/is.vim' " removes the search when moving away
 Plug 'sheerun/vim-polyglot'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'alvan/vim-closetag'
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'lukas-reineke/indent-blankline.nvim' " the only proper indent guide
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 call plug#end()
 
 augroup my_dracula
@@ -69,3 +73,24 @@ augroup END
 colorscheme dracula
 
 let g:Hexokinase_highlighters = ['foregroundfull']
+
+" clears search when pressing the spacebar
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+" search the current word when pressing F8 (like *, but without jumping)
+nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+" insert a single character (by inserting a underscore and then going into
+" replace char mode)
+nnoremap <C-i> i_<Esc>r
+
+lua <<EOF
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↴")
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+}
+EOF

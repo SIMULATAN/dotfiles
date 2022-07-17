@@ -44,7 +44,7 @@ bindsym Control+F3 exec --no-startup-id xbacklight -dec 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+t exec {{terminal}}
+bindsym $mod+t exec {{terminal}} {{terminal_arguments}}
 
 # kill focused window
 bindsym $mod+Shift+q kill
