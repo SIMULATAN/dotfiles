@@ -94,3 +94,7 @@ require("indent_blankline").setup {
     show_current_context_start = true,
 }
 EOF
+
+" make d delete and not cut text
+nnoremap d "_d
+vnoremap d "_d

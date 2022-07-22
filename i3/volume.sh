@@ -13,9 +13,17 @@ function get_volume {
 }
 
 function is_mute {
-    # hacky solution but it works
-    amixer get Master | tail -2 | grep -c '\[on\]'
+    if amixer --version &>/dev/null; then
+        # hacky solution but it works
+        amixer get Master | tail -2 | grep -c '\[on\]' 2>&-
+    else
+        echo -1
+    fi
 }
+
+if playerctl --version &>/dev/null; then
+    playerctl_installed=true
+fi
 
 function send_notification {
     DIR=`dirname "$0"`
@@ -23,7 +31,7 @@ function send_notification {
     if [ "$(is_mute)" = "0" ]; then
         icon_name="{{dotter.current_dir}}/i3/notification-audio-volume-muted.svg"
     elif [ "$volume" -eq "0" ]; then
-	icon_name="{{dotter.current_dir}}/i3/notification-audio-volume-silent.svg"
+        icon_name="{{dotter.current_dir}}/i3/notification-audio-volume-silent.svg"
     elif [ "$volume" -lt "30" ]; then
         icon_name="{{dotter.current_dir}}/i3/notification-audio-volume-low.svg"
     elif [ "$volume" -lt "70" ]; then
@@ -31,14 +39,31 @@ function send_notification {
     else
         icon_name="{{dotter.current_dir}}/i3/notification-audio-volume-high.svg"
     fi
+
+    if [ "$playerctl_installed" = true ] && playerctl status &>/dev/null; then
+        art_url="$(playerctl metadata mpris:artUrl)"
+        track_url="${art_url#file://}"
+        if [ -f /tmp/album_art.sum -a -f /tmp/album_art.png ] && sha1sum --quiet -c /tmp/album_art.sum; then
+            echo Cache up to date.
+        else
+            echo Updating cache...
+            if ! magick convert "$track_url" -gravity center -crop 1:1 +repage /tmp/album_art.png; then
+                echo Magick convert didn\'t work, copying...
+                cp "$track_url" /tmp/album_art.png
+            fi
+            sha1sum "$track_url" > /tmp/album_art.sum
+        fi
+        icon_name="/tmp/album_art.png"
+        song_name="$(playerctl metadata xesam:artist) - $(playerctl metadata xesam:title)"
+    fi
     # Make the bar with the special character ─ (it's not a normal dash -)
     # https://en.wikipedia.org/wiki/Box-drawing_character
     # Example (at 60%): ━━━━━━━━━━━───────
     # Use the "Monospace" font for best results
     bar=$(echo `seq -s "━" $(($volume/5))``seq -s "─" $(((100-$volume)/5))` | sed 's/[0-9]//g')
     # outsourced to be replaced by the >= 100% fix later
-    spacing="     "
-    if [ "$volume" = "0" ]; then
+    spacing="  "
+    if [ "$volume" -lt "10" ]; then
         # add a space (because we have 1 char less)
         volume=" ${volume}"
         # for some reason, the bar contains one block too much
@@ -46,11 +71,17 @@ function send_notification {
         bar=${bar:0:-1}
     elif [ "$volume" -ge "100" ]; then
         # fix bar for values >= 100
-        bar="━━━━━━━━━━━━━━━━━"
+        bar="━━━━━━━━━━━━━━━━━━"
         # remove spacing
         spacing=${spacing:0:-1}
     fi
-    $DIR/notify-send.sh "$volume""     ""$bar" -i "$icon_name" -t 2000 -h string:synchronous:"$bar" --replace=555
+
+    arguments="-i \"$icon_name\" -t 3000 -h string:synchronous:$bar --replace=555"
+    if [ "$song_name" != "" ]; then
+        $DIR/notify-send.sh "$song_name" "$volume$spacing$bar" $arguments
+    else
+        $DIR/notify-send.sh "$volume" "$bar" $arguments
+    fi
 }
 
 send_notification
