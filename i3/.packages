@@ -1,1 +1,4 @@
-playerctl
+# use libpulse on arch and pulseaudio-utils everywhere else to control volume
+pulseaudio-utils
+libpulse
+>i3-gaps

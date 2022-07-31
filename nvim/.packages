@@ -1,2 +1,6 @@
-go
+>neovim
+# required for clipboard sync
 xclip
+# required for hexikonase (color display)
+# only recommended and not required because you can run vim without a color highlighter perfectly fine
++go

@@ -1,0 +1,2 @@
+# used to get the currently playing song for the volume notification
++playerctl

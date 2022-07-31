@@ -1,1 +1,3 @@
-xcwd
+>kitty
+# to open new terminals in the folder of the current focused terminal window
++xcwd

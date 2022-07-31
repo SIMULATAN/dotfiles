@@ -44,7 +44,7 @@ kitty = "~/.config/kitty"
 polybar = "~/.config/polybar"
 
 [polybar.variables]
-# get the right id by using 'xinput test-xi2 --root | grep \(KeyPress\) -A 1' and reading the "device" ou>
+# get the right id by using 'xinput test-xi2 --root | grep \(KeyPress\) -A 1', typing something, and then reading the 'device' field
 keyboard_id = "AT Translated Set 2 keyboard"
 # get the right id by using 'ls -1 /sys/class/power_supply/'
 battery_id = "BAT1"
