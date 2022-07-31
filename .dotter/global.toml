@@ -15,8 +15,9 @@ java_dir = "~/.jdks"
 
 [i3.files]
 i3 = "~/.config/i3"
-"i3/dunst" = "~/.config/dunst/dunstrc"
-"i3/volume.sh" = "~/.config/i3/volume.sh"
+
+[i3]
+depends = [ "bin" ]
 
 [i3.variables]
 file_manager = "nautilus"
@@ -47,6 +48,15 @@ polybar = "~/.config/polybar"
 keyboard_id = "AT Translated Set 2 keyboard"
 # get the right id by using 'ls -1 /sys/class/power_supply/'
 battery_id = "BAT1"
+
+[dunst.files]
+dunst = "~/.config/dunst"
+
+[bin.files]
+bin = "~/bin"
+
+[picom.files]
+picom = "~/.config/picom"
 
 [helpers]
 bool = ".dotter/helpers/bool.rhai"
