@@ -1,0 +1,1 @@
+../rofi/power-menu.sh

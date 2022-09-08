@@ -7,7 +7,6 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 zstyle ':omz:update' frequency 7
 
 DISABLE_MAGIC_FUNCTIONS="true"
-COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="dd.mm.yyyy"
 
@@ -15,15 +14,17 @@ plugins=({{plugins}} {{plugins_extra}})
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#808080,italic"
 
+source ~/.profile
+
 source $ZSH/oh-my-zsh.sh
 
-export LANG=en_GB.UTF-8
+export LANG=en_US.UTF-8
 
 export EDITOR="{{editor}}"
 alias zshconfig="$EDITOR {{dotter.current_dir}}/zsh/zshrc"
 alias ohmyzsh="$EDITOR {{dotter.current_dir}}/zsh/oh-my-zsh"
 # make avaliable to all sessions as an environment variable
-DOTFILES_FOLDER="{{dotter.current_dir}}"
+export DOTFILES_FOLDER="{{dotter.current_dir}}"
 
 function dotfiles() {
   if [ "$1" != "" ]; then
@@ -77,6 +78,9 @@ alias lh="ls -h"
 # like 'gss' (git status short), but with the branch name included
 alias gsb="git status -sb"
 
+# delete whole word with ctrl + backspace
+bindkey ^H backward-delete-word
+
 # load plugins that are located like this: '~/.zsh-plugins/my-plugin/my-plugin.zsh'
 # KEEP AT END (zsh-syntax-highlighting requires this)
 if [ -d ~/.zsh-plugins ]; then
@@ -87,3 +91,5 @@ if [ -d ~/.zsh-plugins ]; then
     fi
   done
 fi
+
+compctl -/ -W ~/dotfiles dotfiles

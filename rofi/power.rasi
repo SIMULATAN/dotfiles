@@ -1,0 +1,8 @@
+/* thanks to eric murph for this config! */
+inputbar {
+  children: [entry];
+}
+
+listview {
+  lines: 4;
+}
