@@ -4,11 +4,20 @@
 
 # terminal emulator
 super + t
-	kitty `xcwd`
+	{{terminal}} {{terminal_arguments}}
 
-# program launcher
-alt + space
-	rofi -show drun
+# program launcher alt + space rofi -show drun
+
+#alt + r ; {c,e,s,w,d}
+	#rofi -show {calc,emoji,ssh,window,windowcd}
+
+#alt + {h,p,w}
+	#{sxhkd-keybinds,power-menu,wifi-menu}.sh
+
+# "f" for windows because "w" is used for "wifi" and the german translation of "window" is "Fenster"
+# various rofi menus
+alt + r ; {h,p,w,c,e,s,f,d}
+	INPUT={sxhkd-keybinds,power-menu,wifi-menu,calc,emoji,ssh,window,windowcd} SCRIPT="$(command -v $INPUT.sh | head -n 1)" && [ ! -z "$SCRIPT" ] && ("$SCRIPT" || exit 0) || rofi -show $INPUT
 
 Print
 	flameshot gui
@@ -46,7 +55,7 @@ super + g
 #
 
 # set the window state
-super + shift + {t,alt + t,s,f}
+super + shift + {t,alt + t,space,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
@@ -80,10 +89,10 @@ super + bracket{left,right}
 
 
 XF86MonBrightnessUp
-	notify-send up && xbacklight -inc 10
+	xbacklight -inc 10
 
 XF86MonBrightnessDown
-	notify-send down && xbacklight -dec 10
+	xbacklight -dec 10
 
 XF86Audio{Raise,Lower}Volume
 	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10%; volume.sh
@@ -102,13 +111,17 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# focus or send to the given desktop
+# focus or send to the given desktop, set 1
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-# preselect
+# focus or send to the given desktop, set 2
 alt   + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '{a-i,j}'
+
+# focus or send to the first unoccupied desktop
+super + {_,shift + } n
+	FIRST_FREE="$(bspc query -D --names -d '.!occupied' | head -n 1)" && [ ! -z $FIRST_FREE ] && bspc {desktop -f,node -d} "$FIRST_FREE" || notify-send "No free desktop found."
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
@@ -133,17 +146,24 @@ super + shift + {Left,Down,Up,Right}
 # move/resize
 #
 
-# expand a window by moving one of its side outward
+# smart resize, taken from the sxhkd examples
 super + r : {h,j,k,l}
-	/bin/sh resize.sh {shrinkx,shrinky,expandy,expandx}
+	 n=10; \
+  { d1=left;   d2=right;  dx=-$n; dy=0;   \
+  , d1=bottom; d2=top;    dx=0;   dy=$n;  \
+  , d1=top;    d2=bottom; dx=0;   dy=-$n; \
+  , d1=right;  d2=left;   dx=$n;  dy=0;   \
+  } \
+  bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
 
 # move a floating window
 super + shift + {h,j,k,l}
-	notify-send hi && bspc node -v {-20 0,0 20,0 -20,20 0}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 #
 # misc
 #
 
+# shows a notification with the current caps lock status (because my laptop doesn't have a hw indicator)
 @Caps_Lock
 	caps-lock.sh
