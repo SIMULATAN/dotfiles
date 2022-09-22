@@ -54,10 +54,14 @@ kitty = "~/.config/kitty"
 polybar = "~/.config/polybar"
 
 [polybar.variables]
-# get the right id by using 'xinput test-xi2 --root | grep \(KeyPress\) -A 1', typing something, and then reading the 'device' field
+# get the id by running:
+# xinput test-xi2 --root | grep \(KeyPress\) -A 1
+# then type something in and read the 'device' field
 keyboard_id = "AT Translated Set 2 keyboard"
-# get the right id by using 'ls -1 /sys/class/power_supply/'
+# ls -1 /sys/class/power_supply/
 battery_id = "BAT1"
+# for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+thermal_zone = "2"
 
 [dunst.files]
 dunst = "~/.config/dunst"

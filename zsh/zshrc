@@ -31,7 +31,7 @@ function dotfiles() {
     INPUT=$(echo "$1" | tr '[:upper:]' '[:lower:]')
     if [ "$INPUT" = "github" ] || [ "$INPUT" = "repo" ]; then
       # run in subshell to prevent current shell from cd'ing into the dotfiles repo
-      (cd {{dotter.current_dir}} && export REPO=$(git config --get remote.origin.url) && if [ "$REPO" != "" ]; then xdg-open "$REPO" && echo "Opened '$REPO' in your Browser."; else echo No git repo found.; fi)
+      (cd {{dotter.current_dir}} && export REPO=$(git config --get remote.origin.url) && if [ "$REPO" != "" ]; then xdg-open "$REPO" && echo "Opened '$REPO' in your Browser."; else echo "No git repo found."; fi)
       return 0
     elif [ -d "{{dotter.current_dir}}/$1" ]; then
       cd {{dotter.current_dir}}/$1

@@ -6,7 +6,9 @@
 super + t
 	{{terminal}} {{terminal_arguments}}
 
-# program launcher alt + space rofi -show drun
+# application launcher
+alt + space
+	rofi -show drun
 
 #alt + r ; {c,e,s,w,d}
 	#rofi -show {calc,emoji,ssh,window,windowcd}
@@ -95,7 +97,7 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 XF86Audio{Raise,Lower}Volume
-	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10%; volume.sh
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%; volume.sh
 
 super + alt + l
 	lock.sh

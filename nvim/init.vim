@@ -62,6 +62,7 @@ Plug 'lukas-reineke/indent-blankline.nvim' " the only proper indent guide
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'https://github.com/ycm-core/YouCompleteMe'
+Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 augroup my_dracula
