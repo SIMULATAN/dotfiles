@@ -12,7 +12,7 @@ HIST_STAMPS="dd.mm.yyyy"
 
 plugins=({{plugins}} {{plugins_extra}})
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#808080,italic"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#808080"
 
 source ~/.profile
 
