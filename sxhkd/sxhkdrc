@@ -18,8 +18,8 @@ alt + space
 
 # "f" for windows because "w" is used for "wifi" and the german translation of "window" is "Fenster"
 # various rofi menus
-alt + r ; {h,p,w,c,e,s,f,d}
-	INPUT={sxhkd-keybinds,power-menu,wifi-menu,calc,emoji,ssh,window,windowcd} SCRIPT="$(command -v $INPUT.sh | head -n 1)" && [ ! -z "$SCRIPT" ] && ("$SCRIPT" || exit 0) || rofi -show $INPUT
+alt + r ; {h,p,w,v,c,e,s,f,d}
+	INPUT={sxhkd-keybinds,power-menu,wifi-menu,vpn,calc,emoji,ssh,window,windowcd} SCRIPT="$(command -v $INPUT.sh | head -n 1)" && [ ! -z "$SCRIPT" ] && ("$SCRIPT" || exit 0) || rofi -show $INPUT
 
 Print
 	flameshot gui
@@ -74,6 +74,7 @@ super + {_,shift + }{h,j,k,l}
 	# move floating windows - doesnt't work because you can't use {} two times for the same argument
 	# bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# rotate windows
 super + control + r
 	bspc node @/ -R 90
 
@@ -169,3 +170,7 @@ super + shift + {h,j,k,l}
 # shows a notification with the current caps lock status (because my laptop doesn't have a hw indicator)
 @Caps_Lock
 	caps-lock.sh
+
+# disable annoying middle click paste (figma)
+~button2
+    echo -n | xsel -n -i
