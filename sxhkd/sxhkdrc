@@ -174,3 +174,7 @@ super + shift + {h,j,k,l}
 # disable annoying middle click paste (figma)
 ~button2
     echo -n | xsel -n -i
+
+# audio control - useful if you don't have hardware player buttons like my laptop
+super + {F7,F8,F9}
+	playerctl {previous,play-pause,next} && volume.sh
