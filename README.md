@@ -21,7 +21,7 @@ I configured most of the things in this repo to follow the [**dracula theme colo
 _note: "Package" refers to dotters packages_
 |Category|(Package-)Name|
 |--|--|
-|WM|i3|
+|WM|bspwm|
 |Terminal|kitty|
 |Shell|zsh|
 |Bar|polybar|
@@ -68,19 +68,34 @@ This section will show the available variables as of `788240a`, read the source 
 - `prompt_replacement`: a [shell parameter expansion](https://stackoverflow.com/a/13210909) that controls the ZSH `PROMPT`, useful if you only want to change a small part of the prompt from your theme, like displaying `/home/user` instead of `~` (`${PROMPT/\\%c/\\%d}`)
 - `editor`: what editor to use (sets the `EDITOR` env variable)
 - `java_dir`: my ZSHRC will search this location for the newest available java installation and configure the shell to use that one. Useful if you install java through IntelliJ and can't be bothered to manually update the shell to use the newest update
+
+### WM
+- `terminal_arguments`: arguments to add to the `terminal` executeable, for example `xcwd` (outputs the directory open in the terminal that's currently focused, tested in kitty) like this: `$(xcwd)`
+- `terminal`: the terminal to open when pressing `super + t`
+
 ### i3
 - `file_manager`: the file manager to open when pressing `super + e`
-- `terminal`: the terminal to open when pressing `super + t`
-- `terminal_arguments`: arguments to add to the `terminal` executeable, for example `xcwd` (outputs the directory open in the terminal that's currently focused, tested in kitty) like this: `$(xcwd)`
 - `auto_restart_i3`: whether to restart i3 when dotter deploys changes
+
 ### polybar
 - `keyboard_id`: the ID of the keyboard to use for the [hackspeed](https://github.com/polybar/polybar-scripts/tree/686f211546b77ced32a8487fe8c2a48f3b59c190/polybar-scripts/info-hackspeed) module
   get by running `xinput test-xi2 --root | grep \(KeyPress\) -A 1`, typing something, and then reading the `device` field
 - `battery_id`: the ID of the battery to display in polybar
   get by running `ls -1 /sys/class/power_supply/`
+- `thermal_zone`: the ID of the sensor to use for the temperature monitor
+  get by running `for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done` and choosing the right one
 
 ## Available scripts
-- `bin/volume.sh`: call to send a volume notification, [see above](#Screenshots)
+_NOTE: All scripts (except for the fonts script) are symlinked into the `bin` directory_
+_thus, you have to enable the `bin` package in your `.dotter/local.toml` file_
+- `install-fonts.sh`: automatically installs the required fonts for my setup
+- `bin/caps-lock.sh` call to send a caps lock notification - bind it on the _release_ of the caps lock key
 - `bin/lock.sh`: locks the screen with either `i3lock-color` or vanilla `i3lock`, depending on what you have installed
-- `install-fonts.sh`: installs the necessary fonts
+- `bin/volume.sh`: call to send a volume notification, [see above](#Screenshots)
+- `polybar/pacman-aur-updates.sh`: prints the number of total package upgrades (pacman + aur)
+- `polybar/player-mpris-simple.sh`: prints the current playing song using the `playerctl` utility
+- `rofi/power-menu.sh`: shows a rofi menu to manage power on your device
+- `rofi/sxhkd-keybinds.sh`: shows a rofi menu with an overview of the keybinds declared in the SXHKD config file
+- `rofi/vpn.sh`: shows a rofi menu to select or disconnect from a vpn (uses `nmcli`)
+- `rofi/wifi-menu.sh`: shows a rofi menu to select or disconnect from a wifi network (uses `nmcli`)
 

@@ -11,9 +11,7 @@
 # - use "Disconnect" instead of "Shutdown"
 
 function shutdown_active_vpns {
-	#local ACTIVE_VPNS=( ${(f)"$(nmcli --get type,name connection show --active | grep '^vpn' | cut -d: -f2)"} )
 	readarray -t ACTIVE_VPNS <<<$(nmcli --get type,name connection show --active | grep '^vpn' | cut -d : -f 2)
-	#echo ACTIVE: $ACTIVE_VPNS
 	local VPN
 	for VPN in ${ACTIVE_VPNS[@]}; do
 		nmcli connection down $VPN >/dev/null || true
