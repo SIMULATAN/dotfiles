@@ -59,7 +59,11 @@ Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'lukas-reineke/indent-blankline.nvim' " the only proper indent guide
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'https://github.com/ycm-core/YouCompleteMe'
+Plug 'wakatime/vim-wakatime'
+Plug 'uiiaoo/java-syntax.vim'
+Plug 'nvim-treesitter/nvim-treesitter'
 call plug#end()
 
 augroup my_dracula

@@ -1,0 +1,184 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + t
+	{{terminal}} {{terminal_arguments}}
+
+# application launcher
+alt + space
+	rofi -show drun
+
+#alt + r ; {c,e,s,w,d}
+	#rofi -show {calc,emoji,ssh,window,windowcd}
+
+#alt + {h,p,w}
+	#{sxhkd-keybinds,power-menu,wifi-menu}.sh
+
+# "f" for windows because "w" is used for "wifi" and the german translation of "window" is "Fenster"
+# various rofi menus
+alt + r ; {h,p,w,v,c,e,s,f,d}
+	INPUT={sxhkd-keybinds,power-menu,wifi-menu,vpn,calc,emoji,ssh,window,windowcd} SCRIPT="$(command -v $INPUT.sh | head -n 1)" && [ ! -z "$SCRIPT" ] && ("$SCRIPT" || exit 0) || rofi -show $INPUT
+
+{_,ctrl} + Print
+	{_,sleep 1 &&} flameshot gui
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+super + shift + {F4,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + shift + {_,ctrl} + q
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# send selected node to the preselection
+super + p
+	bspc node -n last.\!automatic -t tiled
+
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.local
+
+#
+# state/flags
+#
+
+# set the window state
+super + shift + {t,alt + t,space,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus/swap the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+	# move floating windows - doesnt't work because you can't use {} two times for the same argument
+	# bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# rotate windows
+super + control + r
+	bspc node @/ -R 90
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+
+XF86MonBrightnessUp
+	xbacklight -inc 10
+
+XF86MonBrightnessDown
+	xbacklight -dec 10
+
+XF86Audio{Raise,Lower}Volume
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%; volume.sh
+
+super + alt + l
+	lock.sh
+
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop, set 1
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# focus or send to the given desktop, set 2
+alt   + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '{a-i,j}'
+
+# focus or send to the first unoccupied desktop
+super + {_,shift + } n
+	FIRST_FREE="$(bspc query -D --names -d '.!occupied' | head -n 1)" && [ ! -z $FIRST_FREE ] && bspc {desktop -f,node -d} "$FIRST_FREE" || notify-send "No free desktop found."
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+super + shift + {Left,Down,Up,Right}
+	bspc node -s {west,south,north,east} --follow
+
+#
+# move/resize
+#
+
+# smart resize, taken from the sxhkd examples
+super + r : {h,j,k,l}
+	 n=10; \
+  { d1=left;   d2=right;  dx=-$n; dy=0;   \
+  , d1=bottom; d2=top;    dx=0;   dy=$n;  \
+  , d1=top;    d2=bottom; dx=0;   dy=-$n; \
+  , d1=right;  d2=left;   dx=$n;  dy=0;   \
+  } \
+  bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
+
+# move a floating window
+super + shift + {h,j,k,l}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#
+# misc
+#
+
+# shows a notification with the current caps lock status (because my laptop doesn't have a hw indicator)
+@Caps_Lock
+	caps-lock.sh
+
+# disable annoying middle click paste (figma)
+~button2
+    echo -n | xsel -n -i
+
+# audio control - useful if you don't have hardware player buttons like my laptop
+super + {F7,F8,F9}
+	playerctl {previous,play-pause,next} && volume.sh

@@ -43,12 +43,19 @@ function send_notification {
     if [ "$playerctl_installed" = true ] && playerctl status &>/dev/null; then
         art_url="$(playerctl metadata mpris:artUrl)"
         track_url="${art_url#file://}"
+        if [[ "$track_url" =~ ^http ]]; then
+            echo 'URL starts with "http", downloading to "/tmp/album_art_dl.png"...'
+            wget -O /tmp/album_art_dl.png "$track_url"
+            # only copy after download to prevent corruption
+            cp /tmp/album_art_dl.png /tmp/album_art.png
+        fi
+
         if [ -f /tmp/album_art.sum -a -f /tmp/album_art.png ] && sha1sum --quiet -c /tmp/album_art.sum; then
             echo Cache up to date.
         else
             echo Updating cache...
             if ! magick convert "$track_url" -gravity center -crop 1:1 +repage /tmp/album_art.png; then
-                echo Magick convert didn\'t work, copying...
+                echo "Magick convert didn\'t work, copying..."
                 cp "$track_url" /tmp/album_art.png
             fi
             sha1sum "$track_url" > /tmp/album_art.sum

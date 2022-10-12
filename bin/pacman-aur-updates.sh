@@ -1,0 +1,1 @@
+../polybar/pacman-aur-updates.sh

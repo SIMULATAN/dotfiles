@@ -1,0 +1,13 @@
+/* Based on Eric Murphy's rofi config */
+
+configuration {
+  display-drun: "Applications:";
+  display-window: "Windows:";
+  drun-display-format: "{icon} {name}";
+  font: "JetBrainsMono Nerd Font Medium 10";
+  modi: "window,run,drun";
+  show-icons: true;
+}
+
+@theme "./theme.rasi"
+/* vim: ft=sass

@@ -1,0 +1,1 @@
+../rofi/sxhkd-keybinds.sh

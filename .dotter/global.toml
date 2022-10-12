@@ -13,23 +13,33 @@ editor = "nano"
 # the zshrc will automatically set JAVA_HOME and add the JDK to the path
 java_dir = "~/.jdks"
 
+[wm.variables]
+terminal = "kitty"
+# this default value will open kitty in the directory that the current focused windows is in
+# use this to prevent picom from matching flags as the wm class name
+terminal_arguments = "`xcwd`"
+
 [i3.files]
 i3 = "~/.config/i3"
 
 [i3]
-depends = [ "bin" ]
+depends = [ "bin", "wm" ]
 
 [i3.variables]
 file_manager = "nautilus"
-terminal = "kitty"
-# this will get added to the launch command (super + t)
-# use this to prevent picom from matching flags as the wm class name
-# this default value will open kitty in the directory that the current focused windows is in
-terminal_arguments = "`xcwd`"
 # will restart i3 once changes are detected IN THE GLOBAL CONTEXT
 # (will also restart if, say, the ZSH config changed)
 # only runs when the 'i3' package is enabled in the 'local.toml' file
 auto_restart_i3 = "false"
+
+[bspwm]
+depends = [ "bin", "sxhkd", "wm" ]
+
+[bspwm.files]
+bspwm = "~/.config/bspwm"
+
+[sxhkd.files]
+sxhkd = "~/.config/sxhkd"
 
 [neofetch.files]
 neofetch = "~/.config/neofetch"
@@ -44,19 +54,29 @@ kitty = "~/.config/kitty"
 polybar = "~/.config/polybar"
 
 [polybar.variables]
-# get the right id by using 'xinput test-xi2 --root | grep \(KeyPress\) -A 1', typing something, and then reading the 'device' field
+# get the id by running:
+# xinput test-xi2 --root | grep \(KeyPress\) -A 1
+# then type something in and read the 'device' field
 keyboard_id = "AT Translated Set 2 keyboard"
-# get the right id by using 'ls -1 /sys/class/power_supply/'
+# ls -1 /sys/class/power_supply/
 battery_id = "BAT1"
+# for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+thermal_zone = "2"
 
 [dunst.files]
 dunst = "~/.config/dunst"
 
 [bin.files]
-bin = "~/bin"
+bin = "~/.local/bin"
 
 [picom.files]
 picom = "~/.config/picom"
+
+[rofi.files]
+rofi = "~/.config/rofi"
+
+[btop.files]
+btop = "~/.config/btop"
 
 [helpers]
 bool = ".dotter/helpers/bool.rhai"

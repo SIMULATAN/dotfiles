@@ -1,0 +1,51 @@
+#!/bin/bash
+
+function startOrRestart() {
+  startOrRestartImpl "$1" &
+}
+
+function startOrRestartImpl() {
+  # the name of the program, without arguments
+  # required to kill the right process
+  EXECUTABLE="$(echo $1 | cut -f 1 -d " ")"
+  pkill $EXECUTABLE && pwait $EXECUTABLE; $1
+}
+
+startOrRestart sxhkd
+
+# label from 1-10 and a-j, making a total of 20 workspaces
+# required for sxhkd to work properly
+bspc monitor -d {1..10} {a..j}
+
+~/.setup_monitors.sh
+
+bspc config border_width          5
+bspc config window_gap            10
+bspc config top_padding           9
+
+bspc config split_ratio           0.52
+
+bspc config normal_border_color   "#182032"
+bspc config focused_border_color  "#44475a"
+
+bspc config focus_follows_pointer true
+
+# no padding when only a single node is on the screen
+# top padding of 5 to avoid clipping with polybar
+bspc config single_monocle        true
+bspc config gapless_monocle       true
+bspc config borderless_monocle    true
+bspc config top_monocle_padding   5
+
+# set cursor to the normal black cursor instead of the "x"
+xsetroot -cursor_name left_ptr &
+
+startOrRestart polybar
+startOrRestart dunst
+startOrRestart picom -b
+~/.fehbg
+
+# auto-lock the screen when in suspend / sleep
+xss-lock --transfer-sleep-lock -- "lock.sh" --no-fork
+
+startOrRestart flameshot
