@@ -59,7 +59,7 @@ Essentially, clone and just run `./dotter deploy` after adding `packages = [ "pa
 
 ## Configuring and variables
 
-This section will show the available variables as of `788240a`, read the source to find out the current variables.
+This section will show the available variables as of c6dc1a6, read the source to find out the current variables.
 
 ### zsh
 - `theme`: the OhMyZSH theme name, see [their wiki](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
