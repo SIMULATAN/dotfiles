@@ -12,6 +12,10 @@ alias o="xdg-open"
 alias v="$EDITOR"
 alias e="$EDITOR"
 
+function mktgz() {
+  tar --exclude=".*" -czvf "$1.tar.gz" *
+}
+
 # for some reason, zsh-autosuggestions doesn't recognize this as an alias
 function fuck() {
   sudo $(fc -ln -1)
