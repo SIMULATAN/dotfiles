@@ -182,3 +182,16 @@ super + shift + {h,j,k,l}
 # audio control - useful if you don't have hardware player buttons like my laptop
 super + {F7,F8,F9}
 	playerctl {previous,play-pause,next} && volume.sh
+
+#
+# tabbing
+#
+
+# Add focused window to a tabbed instance in given direction
+alt + t; {h,j,k,l}
+	tabc add {west,south,north,east} $(bspc query -N -n focused)
+
+alt + t; r
+	tabbed=$(bspc query -N -n focused); \
+	child=$(tabc list $tabbed | head -n1); \
+	tabc remove $child
