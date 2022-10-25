@@ -1,6 +1,6 @@
-set number " Show absolute line numbers on the left.
 filetype plugin on " Auto-detect un-labeled filetypes
 syntax on " Turn syntax highlighting on
+set number relativenumber " Show relative line numbers on the left.
 set ai " Sets auto-indentation
 set si " Sets smart-indentation
 set cursorline " Highlight current cursor line
