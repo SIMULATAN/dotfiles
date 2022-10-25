@@ -104,6 +104,9 @@ XF86MonBrightnessDown
 XF86Audio{Raise,Lower}Volume
 	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%; volume.sh
 
+XF86AudioPlay
+	playerctl play-pause
+
 super + alt + l
 	lock.sh
 
