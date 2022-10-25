@@ -11,6 +11,7 @@ alias o="xdg-open"
 # v because of "vim"
 alias v="$EDITOR"
 alias e="$EDITOR"
+alias se="sudoedit"
 
 function mktgz() {
   tar --exclude=".*" -czvf "$1.tar.gz" *
@@ -20,3 +21,6 @@ function mktgz() {
 function fuck() {
   sudo $(fc -ln -1)
 }
+
+# walmart ripgrep
+alias fif="find . -type f -print | xargs grep"
