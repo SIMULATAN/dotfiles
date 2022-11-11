@@ -40,7 +40,16 @@ bspc config top_monocle_padding   5
 # set cursor to the normal black cursor instead of the "x"
 xsetroot -cursor_name left_ptr &
 
-startOrRestart polybar
+pkill polybar
+# thanks to Adrian Petrescu for this script!
+# https://github.com/polybar/polybar/issues/763#issuecomment-331604987
+if type "xrandr"; then
+  for m in $(xrandr --query | grep " connected" | cut -d " " -f1); do
+    MONITOR=$m polybar --reload top &
+  done
+else
+  polybar --reload top &
+fi
 startOrRestart dunst
 startOrRestart picom -b
 ~/.fehbg

@@ -29,6 +29,7 @@ NETWORKS="$(nmcli --get type,name connection show | grep '^vpn' | cut -d : -f 2)
 RESULT="$(printf "$NETWORKS\nDisconnect" | rofi -dmenu -i -p '')"
 
 (
+	[[ "$RESULT" == "" ]] && exit || \
 	[[ "$RESULT" == "Disconnect" ]] \
 		&& shutdown_active_vpns true \
 		|| (shutdown_active_vpns && notify "Connecting..." && nmcli connection up "$RESULT" >/dev/null 2>"$HOME/.local/share/rofi-vpn.log" && notify "Connected." || notify "Connection error - check '~/.local/share/rofi-vpn.log' for more information")

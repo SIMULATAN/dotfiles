@@ -13,6 +13,8 @@ alias v="$EDITOR"
 alias e="$EDITOR"
 alias se="sudoedit"
 
+alias hf="history | fzf"
+
 function mktgz() {
   tar --exclude=".*" -czvf "$1.tar.gz" *
 }
