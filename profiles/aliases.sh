@@ -25,4 +25,6 @@ function fuck() {
 }
 
 # walmart ripgrep
-alias fif="find . -type f -print | xargs grep"
+function fif() {
+  grep -Ir "$@" *
+}

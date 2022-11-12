@@ -13,11 +13,28 @@ function startOrRestartImpl() {
 
 startOrRestart sxhkd
 
+VARS=$(echo {1..10} {a..j})
+IFS=' ' read -r -a WANTED_DESKTOPS <<< $VARS
+echo ${WANTED_DESKTOPS[*]}
+
+PRIMARY_MONITOR="eDP1"
+
+while IFS= read -r monitor; do
+	while IFS= read -r desktop; do
+		for i in "${!WANTED_DESKTOPS[@]}"; do
+			if [[ ${WANTED_DESKTOPS[i]} = $desktop ]]; then
+				unset 'WANTED_DESKTOPS[i]'
+			fi
+		done
+	done <<< "$(bspc query -D --names -m $monitor)"
+done <<< "$(bspc query -M --names | grep --invert $PRIMARY_MONITOR)"
+
 # label from 1-10 and a-j, making a total of 20 workspaces
 # required for sxhkd to work properly
-bspc monitor -d {1..10} {a..j}
+#bspc desktop -d {1..10} {a..j}
+bspc monitor $PRIMARY_MONITOR -d ${WANTED_DESKTOPS[*]}
 
-~/.setup_monitors.sh
+./setup-desktops.sh
 
 bspc config border_width          5
 bspc config window_gap            10

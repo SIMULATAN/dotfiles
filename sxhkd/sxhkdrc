@@ -123,7 +123,7 @@ super + {o,i}
 
 # focus or send to the given desktop, set 1
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '{1-9,10}'
 
 # focus or send to the given desktop, set 2
 alt   + {_,shift + }{1-9,0}
