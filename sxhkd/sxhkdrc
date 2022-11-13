@@ -101,12 +101,6 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	xbacklight -dec 10
 
-XF86Audio{Raise,Lower}Volume
-	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%; volume.sh
-
-XF86AudioPlay
-	playerctl play-pause
-
 super + alt + l
 	lock.sh
 
@@ -184,7 +178,14 @@ super + shift + {h,j,k,l}
 
 # audio control - useful if you don't have hardware player buttons like my laptop
 super + {F7,F8,F9}
-	playerctl {previous,play-pause,next} && volume.sh
+	playerctl {previous,play-pause,next}; volume.sh
+
+XF86Audio{Prev,Play,Next}
+	playerctl {previous,play-pause,next}; volume.sh
+
+XF86Audio{Raise,Lower}Volume
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%; volume.sh
+
 
 #
 # tabbing

@@ -5,16 +5,16 @@ external_monitor="DP2"
 
 function monitor_added() {
   for desktop_name in {1..10}; do
-    bspc desktop $(bspc query -D -d "$desktop_name") --to-monitor $external_monitor
-  done
-
-  for desktop_name in {a..j}; do
     bspc desktop $(bspc query -D -d "$desktop_name") --to-monitor $internal_monitor
   done
 
+  for desktop_name in {a..j}; do
+    bspc desktop $(bspc query -D -d "$desktop_name") --to-monitor $external_monitor
+  done
+
   bspc desktop Desktop --remove 2>/dev/null
-  bspc monitor $internal_monitor -o {1..10}
-  bspc monitor $external_monitor -o {a..j}
+  bspc monitor $internal_monitor -o {a..j}
+  bspc monitor $external_monitor -o {1..10}
 }
 
 function monitor_removed() {
