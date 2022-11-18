@@ -78,5 +78,8 @@ rofi = "~/.config/rofi"
 [btop.files]
 btop = "~/.config/btop"
 
+[ranger.files]
+ranger = "~/.config/ranger"
+
 [helpers]
 bool = ".dotter/helpers/bool.rhai"
