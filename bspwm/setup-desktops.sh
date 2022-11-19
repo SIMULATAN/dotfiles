@@ -1,7 +1,7 @@
 #!/bin/bash
 
-internal_monitor="eDP1"
-external_monitor="DP2"
+internal_monitor="$(xrandr | grep primary | cut -d ' ' -f 1)"
+external_monitor="$(xrandr | grep ' connected ' | grep --invert primary | cut -d ' ' -f 1 | head -1)"
 
 function monitor_added() {
   for desktop_name in {1..10}; do
