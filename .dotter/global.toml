@@ -81,5 +81,8 @@ btop = "~/.config/btop"
 [ranger.files]
 ranger = "~/.config/ranger"
 
+[git.files]
+git = "~/.config/git"
+
 [helpers]
 bool = ".dotter/helpers/bool.rhai"
