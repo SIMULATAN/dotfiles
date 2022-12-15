@@ -49,9 +49,6 @@ zinit snippet OMZ::lib/history.zsh
 zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::lib/key-bindings.zsh
 
-# delete whole word with ctrl + backspace
-bindkey ^H backward-delete-word
-
 zinit ice blockf atpull'zinit creinstall -q .'
 while read LINE; do
   zinit light $LINE;
@@ -61,3 +58,6 @@ command -v starship &>/dev/null && eval "$(starship init zsh)" || true
 
 # start vim mode
 bindkey -v
+
+# delete whole word with ctrl + backspace
+bindkey ^H backward-delete-word
