@@ -36,9 +36,9 @@ bspc monitor $PRIMARY_MONITOR -d ${WANTED_DESKTOPS[*]}
 
 ./setup-desktops.sh
 
-bspc config border_width          5
-bspc config window_gap            10
-bspc config top_padding           5
+bspc config border_width          2
+bspc config window_gap            7
+bspc config top_padding           2
 
 bspc config split_ratio           0.5
 bspc config automatic_scheme      alternate
@@ -53,7 +53,7 @@ bspc config focus_follows_pointer true
 bspc config single_monocle        true
 bspc config gapless_monocle       true
 bspc config borderless_monocle    true
-bspc config top_monocle_padding   5
+bspc config top_monocle_padding   3
 
 # set cursor to the normal black cursor instead of the "x"
 xsetroot -cursor_name left_ptr &

@@ -388,6 +388,12 @@
 #    fullscreen = delay
 #[fullscreen_show_critical]
 #    msg_urgency = critical
-#    fullscreen 
+#    fullscreen
+#
+[volume]
+    appname = volumenotification
+    format = "%s %n\n%b"
+    history_ignore=yes
+    fullscreen = show
 #
 # vim: ft=cfg

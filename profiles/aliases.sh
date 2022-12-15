@@ -28,3 +28,20 @@ function fuck() {
 function fif() {
   grep -Ir "$@" *
 }
+
+alias ls='ls --color=auto'
+# human readable format - very handy
+alias lh="ls -h"
+alias grep="grep --color"
+
+# like gss (git status short), but with the branch name included
+alias gsb="git status -sb"
+
+function mkbak() {
+  for file in "$@"
+  do
+    cp "$file" "$file.bak"
+  done
+}
+
+alias cdtmp='cd $(mktemp -d)'

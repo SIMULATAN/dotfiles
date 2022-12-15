@@ -3,15 +3,18 @@ profiles = "~/.profiles/"
 "zsh/zshrc" = "~/.zshrc"
 
 [zsh.variables]
-theme = "robbyrussell"
-plugins = "git docker docker-compose aliases copybuffer copyfile command-not-found history"
+plugins = "common-aliases git docker docker-compose aliases copybuffer copyfile command-not-found history"
 # add extra plugins here, for example local ones
 plugins_extra = ""
+plugins_external = "zsh-users/zsh-syntax-highlighting zsh-users/zsh-autosuggestions"
 # display '/home/user' instead of '~'
 prompt_replacement = "${PROMPT/\\%c/\\%d}"
-editor = "nano"
+editor = "nvim"
 # the zshrc will automatically set JAVA_HOME and add the JDK to the path
 java_dir = "~/.jdks"
+
+[starship.files]
+"starship/starship.toml" = "~/.config/starship.toml"
 
 [wm.variables]
 terminal = "kitty"

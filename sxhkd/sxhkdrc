@@ -56,6 +56,10 @@ super + p
 super + g
 	bspc node -s biggest.local
 
+# send to current node to the desktop in the respective direction
+super + ctrl + arrow{left,up,down,right}
+	bspc node -d $(bspc query -D -m $(bspc query -M west | head -n 1) | head -n 1) --follow
+
 #
 # state/flags
 #
@@ -185,6 +189,9 @@ XF86Audio{Prev,Play,Next}
 
 XF86Audio{Raise,Lower}Volume
 	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%; volume.sh
+
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle; volume.sh
 
 
 #
