@@ -1,0 +1,1 @@
+../bspwm/setup-desktops.sh

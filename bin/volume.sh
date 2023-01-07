@@ -11,17 +11,21 @@
 # Adapted, expanded & completed by SIMULATAN
 # https://github.com/SIMULATAN/dotfiles/blob/main/i3/volume.sh
 
-function get_volume {
-    pactl list sinks | tr ' ' '\n' | grep -m1 '%' | tr -d '%'
+function parse_volume {
+    echo "$1" | cut -d % -f $2 | rev | cut -s -d ' ' -f 1 | rev | head -1
 }
 
+function get_volume {
+    VOLUME_LINE="$(pactl get-sink-volume @DEFAULT_SINK@)"
+
+    VOLUME_LEFT=$(parse_volume "$VOLUME_LINE" 1)
+    VOLUME_RIGHT=$(parse_volume "$VOLUME_LINE" 2)
+    echo "$(( ($VOLUME_LEFT + $VOLUME_RIGHT) / 2 ))"
+}
+
+# returns code 1 if muted, 0 if not muted
 function is_mute {
-    if amixer --version &>/dev/null; then
-        # hacky solution but it works
-        amixer get Master | tail -2 | grep -c '\[on\]' 2>&-
-    else
-        echo -1
-    fi
+    (pactl get-sink-mute @DEFAULT_SINK@ | cut -d ' ' -f 2 | grep yes) &>/dev/null && return 1 || return 0
 }
 
 if playerctl --version &>/dev/null; then
@@ -30,8 +34,9 @@ fi
 
 function send_notification {
     DIR=`dirname "$0"`
+    if [ "$DIR" == "." ]; then DIR="$PWD"; fi
     volume=`get_volume`
-    if [ "$(is_mute)" = "0" ]; then
+    if ! is_mute; then
         icon_name="$DIR/notification-audio-volume-muted.svg"
     elif [ "$volume" -eq "0" ]; then
         icon_name="$DIR/notification-audio-volume-silent.svg"

@@ -17,7 +17,7 @@ HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/.zsh_history
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#808080"
 
-source ~/.profile
+[ -f ~/.profile ] && source ~/.profile
 
 # make avaliable to all sessions as an environment variable
 export DOTFILES_FOLDER="{{dotter.current_dir}}"
@@ -35,7 +35,12 @@ fi
 
 bindkey -a '^ ' edit-command-line
 
-compctl -/ -W ~/dotfiles dotfiles
+autoload -U compinit && compinit -u
+zstyle ':completion:*' menu select
+# Auto complete with case insenstivity
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+compctl -/ -W {{dotter.current_dir}} dotfiles
 
 source ~/.local/share/zinit/zinit.git/zinit.zsh
 autoload -Uz _zinit

@@ -38,7 +38,7 @@ bspc monitor $PRIMARY_MONITOR -d ${WANTED_DESKTOPS[*]}
 
 bspc config border_width          2
 bspc config window_gap            7
-bspc config top_padding           2
+bspc config top_padding           1
 
 bspc config split_ratio           0.5
 bspc config automatic_scheme      alternate

@@ -10,7 +10,7 @@ if echo "$player_status" | grep -ixP "^(playing)|(paused)$" >/dev/null 2>&1; the
 
     [ "$player_status" = "Paused" ] && printf "⏸ "
 
-    printf "$artist"
+    echo -n "$artist"
     [ -n "$artist" ] && [ -n "$title" ] && printf " - "
-    printf "$title"
+    echo -n "$title"
 fi

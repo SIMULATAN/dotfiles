@@ -1,3 +1,5 @@
 >polybar
-# used for hackspeed
-+xinput
+# used for checkupdates
++pacman-contrib
+# used for the currenty playing module
++playerctl
