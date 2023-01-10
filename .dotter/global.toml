@@ -1,6 +1,6 @@
 [zsh.files]
 profiles = "~/.profiles/"
-"zsh/zshrc" = "~/.zshrc"
+"zsh/zshrc" = "~/.config/zsh/.zshrc"
 
 [zsh.variables]
 plugins = "common-aliases git docker docker-compose aliases copybuffer copyfile command-not-found history"
