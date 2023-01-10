@@ -21,6 +21,7 @@ terminal = "kitty"
 # this default value will open kitty in the directory that the current focused windows is in
 # use this to prevent picom from matching flags as the wm class name
 terminal_arguments = "`xcwd`"
+task_manager = "btop"
 
 [i3.files]
 i3 = "~/.config/i3"

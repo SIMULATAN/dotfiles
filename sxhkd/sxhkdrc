@@ -6,6 +6,10 @@
 super + t
 	{{terminal}} {{terminal_arguments}}
 
+# task manager - the terminal will close when the configured task manager is closed (tested with btop in kitty)
+ctrl + shift + Escape
+	{{terminal}} {{task_manager}}
+
 # application launcher
 alt + space
 	rofi -show drun
