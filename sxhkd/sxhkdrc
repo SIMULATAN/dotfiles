@@ -14,11 +14,10 @@ ctrl + shift + Escape
 alt + space
 	rofi -show drun
 
-#alt + r ; {c,e,s,w,d}
-	#rofi -show {calc,emoji,ssh,window,windowcd}
+# do not disturbed mode - "m" for "mute"
+super + shift + m
+	dunstctl set-paused toggle
 
-#alt + {h,p,w}
-	#{sxhkd-keybinds,power-menu,wifi-menu}.sh
 
 # "f" for windows because "w" is used for "wifi" and the german translation of "window" is "Fenster"
 # various rofi menus

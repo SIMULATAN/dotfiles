@@ -1,0 +1,1 @@
+../polybar/dunst-mute-status.sh
