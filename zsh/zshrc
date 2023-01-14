@@ -27,7 +27,7 @@ for FILE in ~/.profiles*/* ; do source $FILE ; done
 {{#if java_dir}}
 if [ -d $(echo {{java_dir}}) ]; then
   # get latest JDK in java_dir
-  export JAVA_HOME={{java_dir}}/$(ls {{java_dir}} | sed '/-/!{s/$/_/}' | sort -V | sed 's/_$//' | tail -2)
+  export JAVA_HOME={{java_dir}}/$(ls {{java_dir}} | sed '/-/!{s/$/_/}' | sort -V | sed 's/_$//' | tail -1)
   # add the bin dir of the found java home to the path
   [ ! -z $JAVA_HOME ] && PATH="$PATH:$JAVA_HOME/bin" || true
 fi
