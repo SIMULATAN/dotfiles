@@ -1,4 +1,4 @@
-To setup git, add the following lines to your git config.
+To setup git, add the following lines to your git config (in `$XDG_CONFIG_DIR/git/config`!).
 
 ```toml
 [include]

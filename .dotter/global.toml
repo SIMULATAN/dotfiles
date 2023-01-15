@@ -31,10 +31,6 @@ depends = [ "bin", "wm" ]
 
 [i3.variables]
 file_manager = "nautilus"
-# will restart i3 once changes are detected IN THE GLOBAL CONTEXT
-# (will also restart if, say, the ZSH config changed)
-# only runs when the 'i3' package is enabled in the 'local.toml' file
-auto_restart_i3 = "false"
 
 [bspwm]
 depends = [ "bin", "sxhkd", "wm" ]
