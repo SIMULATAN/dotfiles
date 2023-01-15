@@ -20,10 +20,12 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export HISTFILE="$XDG_STATE_HOME"/.shell_history
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
+export WINEPREFIX="$XDG_DATA_HOME"/wine
 
 # adds the bin folder to the PATH
 source "$CARGO_HOME/env"
 
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
+alias wget=wget --hsts-file="/dev/null"
 ```
 You can just copy these lines into for ex. `/etc/profile.d/xdg-dir.sh`.
