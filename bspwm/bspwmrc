@@ -73,7 +73,4 @@ startOrRestart dunst
 startOrRestart picom -b
 ~/.fehbg
 
-# auto-lock the screen when in suspend / sleep
-xss-lock --transfer-sleep-lock -- "lock.sh" --no-fork
-
 startOrRestart flameshot
