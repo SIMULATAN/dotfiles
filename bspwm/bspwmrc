@@ -8,7 +8,9 @@ function startOrRestartImpl() {
   # the name of the program, without arguments
   # required to kill the right process
   EXECUTABLE="$(echo $1 | cut -f 1 -d " ")"
-  pkill $EXECUTABLE && pwait $EXECUTABLE; $1
+  if command -v $EXECUTABLE; then
+    pkill $EXECUTABLE && pwait $EXECUTABLE; $1
+  fi
 }
 
 startOrRestart sxhkd
@@ -72,5 +74,7 @@ fi
 startOrRestart dunst
 startOrRestart picom -b
 ~/.fehbg
+
+startOrRestart playerctld daemon
 
 startOrRestart flameshot
