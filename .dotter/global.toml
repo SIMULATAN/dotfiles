@@ -22,6 +22,7 @@ terminal = "kitty"
 # use this to prevent picom from matching flags as the wm class name
 terminal_arguments = "`xcwd`"
 task_manager = "btop"
+file_manager = "ranger"
 
 [i3.files]
 i3 = "~/.config/i3"

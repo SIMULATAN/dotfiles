@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if command -v betterlockscreen; then
-  betterlockscreen -l blur
+  betterlockscreen -l
 # check for i3-color by checking if the version output contains the creator's name, "Raymond Li"
 # i3lock -v prints to STDERR for some reason, so we'll just redirect STDERR to STDOUT
 elif (i3lock -v 2>&1 | grep -q -i "Raymond"); then

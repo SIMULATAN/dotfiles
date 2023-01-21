@@ -10,14 +10,17 @@ super + t
 ctrl + shift + Escape
 	{{terminal}} {{task_manager}}
 
-# application launcher
-alt + space
-	rofi -show drun
+# tui file manager - the terminal will close when the configured file manager is closed (tested with ranger in kitty)
+super + e
+	{{terminal}} {{file_manager}}
 
-# do not disturbed mode - "m" for "mute"
+# do not disturbe mode - "m" for "mute"
 super + shift + m
 	dunstctl set-paused toggle
 
+# application launcher
+alt + space
+	rofi -show drun
 
 # "f" for windows because "w" is used for "wifi" and the german translation of "window" is "Fenster"
 # various rofi menus
@@ -103,10 +106,10 @@ super + bracket{left,right}
 
 
 XF86MonBrightnessUp
-	xbacklight -inc 10
+	brightnessctl set 10%+
 
 XF86MonBrightnessDown
-	xbacklight -dec 10
+	brightnessctl set 10%-
 
 super + alt + l
 	lock.sh
