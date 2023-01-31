@@ -45,8 +45,14 @@ sxhkd = "~/.config/sxhkd"
 [neofetch.files]
 neofetch = "~/.config/neofetch"
 
+[nvim]
+depends = [ "vim" ]
+
 [nvim.files]
 nvim = "~/.config/nvim"
+
+[vim.files]
+vim = "~/.vim"
 
 [kitty.files]
 kitty = "~/.config/kitty"

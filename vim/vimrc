@@ -1,0 +1,62 @@
+runtime **local.vim
+
+let g:airline_theme='dracula'
+
+call settings#LoadVariablesOnce("/home/".$USER."/.vim/settings.local")
+
+" plugins
+if ! empty(globpath(&rtp, 'autoload/plug.vim'))
+  call plug#begin()
+    Plug 'haya14busa/is.vim' " removes the search when moving away
+    Plug 'sheerun/vim-polyglot'
+    Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'alvan/vim-closetag'
+
+    if executable("go") || settings#IsEnabled("hexokinase")
+      Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+    endif
+
+    if settings#IsEnabled("airline")
+      Plug 'vim-airline/vim-airline'
+    endif
+
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'lukas-reineke/indent-blankline.nvim' " the only proper indent guide
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'https://github.com/ycm-core/YouCompleteMe'
+
+    Plug 'wakatime/vim-wakatime'
+
+    Plug 'uiiaoo/java-syntax.vim'
+    Plug 'nvim-treesitter/nvim-treesitter'
+  call plug#end()
+elseif verbose >= 3
+  echoerr "vim-plug not found!"
+endif
+
+augroup my_dracula
+  autocmd!
+	" transparent background
+  autocmd ColorScheme dracula highlight Normal guibg=NONE ctermbg=NONE
+  " highlight trailing whitespaces in red
+  autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
+  autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+augroup END
+
+:silent! colorscheme dracula
+
+let g:Hexokinase_highlighters = ['foregroundfull']
+
+if has("nvim") && has("indent_blankline")
+lua <<EOF
+  vim.opt.list = true
+  vim.opt.listchars:append("space:⋅")
+  vim.opt.listchars:append("eol:↴")
+
+  require("indent_blankline").setup {
+      space_char_blankline = " ",
+      show_current_context = true,
+      show_current_context_start = true,
+  }
+EOF
+endif

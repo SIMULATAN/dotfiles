@@ -75,6 +75,8 @@ startOrRestart dunst
 startOrRestart picom -b
 ~/.fehbg
 
+xss-lock betterlockscreen -l
+
 startOrRestart playerctld daemon
 
 startOrRestart flameshot
