@@ -30,8 +30,8 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
     Plug 'uiiaoo/java-syntax.vim'
     Plug 'nvim-treesitter/nvim-treesitter'
   call plug#end()
-elseif verbose >= 3
-  echoerr "vim-plug not found!"
+elseif &verbose >= 1
+  echo "vim-plug not found!"
 endif
 
 augroup my_dracula
