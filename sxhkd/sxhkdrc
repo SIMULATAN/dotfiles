@@ -135,7 +135,7 @@ alt   + {_,shift + }{1-9,0}
 
 # focus or send to the first unoccupied desktop
 super + {_,shift + } n
-	FIRST_FREE="$(bspc query -D --names -d '.!occupied' | head -n 1)" && [ ! -z $FIRST_FREE ] && bspc {desktop -f,node -d} "$FIRST_FREE" || notify-send "No free desktop found."
+	FIRST_FREE="$(bspc query -D --names -d '.!occupied' | grep -v 'Desktop' | head -n 1)" && [ ! -z $FIRST_FREE ] && bspc {desktop -f,node -d} "$FIRST_FREE" || notify-send "No free desktop found."
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
