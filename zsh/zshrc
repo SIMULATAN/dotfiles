@@ -17,6 +17,9 @@ HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/.zsh_history
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#808080"
 
+# make '**' a shortcut for '**/*' => '**.tar.gz' works now (instead of '**/*.tar.gz')
+setopt globstarshort
+
 [ -f ~/.profile ] && source ~/.profile
 
 # make avaliable to all sessions as an environment variable
