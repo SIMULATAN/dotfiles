@@ -34,6 +34,10 @@ alt + r ; {h,p,w,v,c,e,s,f,d}
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# generate a password & type or copy it or do both
+alt + p ; {t,c,m}
+	PASS="$(pass-rs -s 69)" && {xdotool type "$PASS",echo -n "$PASS" | xsel -b,echo -n "$PASS" | xsel -b && xdotool type "$PASS"}
+
 #
 # bspwm hotkeys
 #

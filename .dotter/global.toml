@@ -40,7 +40,7 @@ depends = [ "bin", "sxhkd", "wm" ]
 bspwm = "~/.config/bspwm"
 
 [sxhkd.files]
-sxhkd = "~/.config/sxhkd"
+"sxhkd/sxhkdrc" = "~/.config/sxhkd/sxhkdrc"
 
 [neofetch.files]
 neofetch = "~/.config/neofetch"

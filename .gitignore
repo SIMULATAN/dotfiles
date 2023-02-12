@@ -1,3 +1,4 @@
 .dotter/cache*
 *.swp
 fonts/
+**.local/
