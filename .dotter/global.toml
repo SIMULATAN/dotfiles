@@ -84,6 +84,7 @@ ranger = "~/.config/ranger"
 
 [git.files]
 "git/config" = "~/.config/git/config.global"
+"git/template" = "~/.config/git/template"
 
 [helpers]
 bool = ".dotter/helpers/bool.rhai"

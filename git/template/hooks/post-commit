@@ -1,0 +1,17 @@
+#!/bin/bash
+
+MSG="$(git log -1 --format=format:'%an <%ae>')"
+
+COMMITTER="$(git log -1 --format=format:'%cn <%ce>')"
+
+if [ "$MSG" != "$COMMITTER" ]; then
+  $MSG="$MSG @ $COMMITTER"
+fi
+
+GPG="$(git log -1 --format=format:'%GS')"
+
+if [[ ! -z "$GPG" ]]; then
+  MSG="$MSG (GPG: $GPG)"
+fi
+
+echo "Committed as $MSG"
