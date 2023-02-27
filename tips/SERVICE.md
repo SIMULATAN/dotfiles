@@ -1,5 +1,5 @@
 Here's a systemd service file to automatically deploy configuration changes.
-Deploy to `/etc/systemd/system/dotter.service` and don't forget to `systemctl enable --now dotter` to start the service and enable autostart.
+Deploy to `/etc/systemd/user/dotter.service` and don't forget to `systemctl enable --now --user dotter` to start the service and enable autostart.
 
 ```toml
 [Unit]
@@ -11,10 +11,9 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-User=<myuser>
 Environment="DISPLAY=:0"
-ExecStart=/usr/bin/env bash -c 'echo "Starting watch..." &&  cd /path/to/dotfiles && ./dotter watch'
+ExecStart=/usr/bin/env bash -c 'echo "Starting watch..." &&  cd /home/"'$USER'"/dotfiles && ./dotter watch'
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
 ```
