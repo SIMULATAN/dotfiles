@@ -11,7 +11,7 @@ alias zshconfig="$EDITOR {{dotter.current_dir}}/zsh/zshrc"
 # dont save commands starting with a space to the history file
 setopt HIST_IGNORE_SPACE
 HIST_STAMPS="dd.mm.yyyy"
-HISTSIZE=1000
+HISTSIZE=50000
 SAVEHIST=50000
 HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/.zsh_history
 
