@@ -12,7 +12,7 @@ chosen=$(printf "$POWEROFF\n$RESTART\n$SUSPEND\n$LOCK" | rofi -dmenu -i -theme-s
 case "$chosen" in
 	$POWEROFF) poweroff ;;
 	$RESTART) reboot ;;
-	$SUSPEND) lock.sh && systemctl suspend ;;
+	$SUSPEND) (lock.sh &) && systemctl suspend ;;
 	$LOCK) lock.sh ;;
 	*) exit 1 ;;
 esac
