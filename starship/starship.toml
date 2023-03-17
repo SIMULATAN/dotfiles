@@ -9,13 +9,20 @@ right_format = "$cmd_duration"
 [line_break]
 disabled = true
 
+# TODO: fix git repo display when in subfolder
+[custom.dir]
+command = '([[ -d "$PWD/.git" ]] && basename "$(git rev-parse --show-toplevel)" || ([[ "$PWD" == "$HOME" ]] && echo "$PWD (~)" || echo "$PWD")) && ([[ ! -w "$PWD" ]] && echo "not writable") || true'
+format = "[$output]($style)"
+style = 'bold cyan'
+shell = "bash"
+when = "false"
 
 [git_metrics]
 disabled = false
 
 [directory]
 truncation_length = 0
-read_only = " "
+read_only = " "
 
 # nerd font icons
 [aws]
