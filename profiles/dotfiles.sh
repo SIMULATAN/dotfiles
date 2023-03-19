@@ -23,7 +23,6 @@ function dotfiles() {
     cd {{dotter.current_dir}}
   fi
   # show all files, except for "." and ".." (current / upper directory)
-  ls -a -I "." -I ".."
+  ls -A
 }
-
 
