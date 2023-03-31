@@ -28,7 +28,7 @@ alt + r ; {h,p,w,v,c,e,s,f,d}
 	INPUT={sxhkd-keybinds,power-menu,wifi-menu,vpn,calc,emoji,ssh,window,windowcd} SCRIPT="$(command -v $INPUT.sh | head -n 1)" && [ ! -z "$SCRIPT" ] && ("$SCRIPT" || exit 0) || rofi -show $INPUT
 
 {_,ctrl} + Print
-	{_,sleep 1 &&} flameshot gui
+	{_,sleep 1 &&} pkill picom; pwait picom; picom -b; flameshot gui
 
 # make sxhkd reload its configuration files:
 super + Escape
