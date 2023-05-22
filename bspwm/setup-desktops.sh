@@ -1,7 +1,11 @@
 #!/bin/bash
 
+set -x
+
 internal_monitor="$(xrandr | grep primary | cut -d ' ' -f 1)"
 external_monitor="$(xrandr | grep ' connected ' | grep --invert primary | cut -d ' ' -f 1 | head -1)"
+
+echo "$external_monitor"
 
 function monitor_added() {
   for desktop_name in {1..10}; do
@@ -25,7 +29,9 @@ function monitor_removed() {
   done
 
   bspc monitor $internal_monitor -o {1..10} {a..j}
+  [ -z "$external_monitor" ] && bspc query -M --names | grep -v "$internal_monitor" | xargs -i bspc monitor {} --remove
 	bspc desktop Desktop --remove 2>/dev/null
+  bspc monitor "$external_monitor" --remove
 }
 
 case "$1" in

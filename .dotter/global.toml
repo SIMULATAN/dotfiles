@@ -40,6 +40,12 @@ bspwm = "~/.config/bspwm"
 [sxhkd.files]
 "sxhkd/sxhkdrc" = "~/.config/sxhkd/sxhkdrc"
 
+[hyprland]
+depends = [ "wm" ]
+
+[hyprland.files]
+hyprland = "~/.config/hypr"
+
 [neofetch.files]
 neofetch = "~/.config/neofetch"
 

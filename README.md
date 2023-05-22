@@ -41,8 +41,8 @@ For example (pacman): `sudo pacman -S $(cat .packages | sed '/#/d' | grep -v "^[
 This script will install all dependencies *except* packages that are prefixed with `?` (packages that can be useful but aren't requried). To ignore more dependencies, add the prefix char to the  `grep` call in the `[]`, for example: `^[?]` -> `^[?+]` to only install required packages (and the core)
 
 #### `.packages` syntax
-- `PACKAGE`: this package is _required_
 - `>PACKAGE`: this package is the _core_ of the package, for example `i3-gaps` for the `i3` config.
+- `PACKAGE`: this package is _required_
 - `+PACKAGE`: this package is _not required_, but _recommended_
 - `?PACKAGE`: this package is _not required_, but _can be useful_
 - `# COMMENT`: these lines contain comments regarding the package, like when you should install it or what it's useful for, these lines should be skipped in your install script

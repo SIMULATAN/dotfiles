@@ -64,6 +64,7 @@ Plug 'https://github.com/ycm-core/YouCompleteMe'
 Plug 'wakatime/vim-wakatime'
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'jasonccox/vim-wayland-clipboard'
 call plug#end()
 
 augroup my_dracula

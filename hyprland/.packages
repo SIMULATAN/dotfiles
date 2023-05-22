@@ -1,0 +1,9 @@
+>hyprland
+xdg-desktop-portal-hyprland
++wl-clipboard
++hyprpaper
++swaylock-effects-git
+# flameshot support for wayland
++grim
+# GUI to change GTK settings
+?nwg-look

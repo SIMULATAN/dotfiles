@@ -11,7 +11,7 @@
 # Adapted, expanded & completed by SIMULATAN
 # https://github.com/SIMULATAN/dotfiles/blob/main/i3/volume.sh
 
-function parse_volume {
+function parse_volume() {
     echo "$1" | cut -d % -f $2 | rev | cut -s -d ' ' -f 1 | rev | head -1
 }
 

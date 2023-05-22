@@ -1,2 +1,5 @@
+# deprecated; use the fork for wayland support
+# >rofi
+>rofi-lbonn-wayland-git
 +rofi-emoji
 +rofi-calc
