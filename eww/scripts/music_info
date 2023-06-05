@@ -1,0 +1,78 @@
+#!/bin/bash
+# script by adi1090x, heavily modified to use playerctl by SIMULATAN
+
+COVER="/tmp/album_art.png"
+
+function get_status() {
+	playerctl status -F | while read status; do
+	if [[ $status = "Playing" ]]; then
+		echo ""
+	elif [[ $status = "Paused" ]]; then
+		echo ""
+	else
+		echo ""
+	fi
+done
+}
+
+# follows a specific metadata and also updates it when the status changes
+# this fixes metadata not showing up when the first player is opened
+function follow() {
+	(playerctl status -F | xargs -I {} playerctl metadata "$@") &
+	playerctl metadata -F "$@"
+}
+
+function get_song() {
+	follow xesam:title
+}
+
+function get_artist() {
+	follow xesam:artist
+}
+
+# time percentage, float, from 0 to 100
+function get_time() {
+	follow --format '{{ position / mpris:length * 100 }}'
+}
+
+# current position, formatted as duration
+function get_ctime() {
+	follow --format '{{ duration(position) }}'
+}
+
+# total length, formatted as duration
+function get_ttime() {
+	follow --format '{{ duration(mpris:length) }}'
+}
+
+# cover image location
+# either $COVER (supplied by AADaemon) or, if that file doesn't exist, `images/music`
+function get_cover() {
+	if [ -f "$COVER" ]; then
+		echo "$COVER"
+	else
+		echo "images/music.png"
+	fi
+}
+
+if [[ "$1" == "--song" ]]; then
+	get_song
+elif [[ "$1" == "--artist" ]]; then
+	get_artist
+elif [[ "$1" == "--status" ]]; then
+	get_status
+elif [[ "$1" == "--time" ]]; then
+	get_time
+elif [[ "$1" == "--ctime" ]]; then
+	get_ctime
+elif [[ "$1" == "--ttime" ]]; then
+	get_ttime
+elif [[ "$1" == "--cover" ]]; then
+	get_cover
+elif [[ "$1" == "--toggle" ]]; then
+	playerctl play-pause
+elif [[ "$1" == "--next" ]]; then
+	{ playerctl next; get_cover; }
+elif [[ "$1" == "--prev" ]]; then
+	{ playerctl previous; get_cover; }
+fi

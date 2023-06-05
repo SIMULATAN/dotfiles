@@ -65,6 +65,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'jasonccox/vim-wayland-clipboard'
+Plug 'elkowar/yuck.vim'
 call plug#end()
 
 augroup my_dracula

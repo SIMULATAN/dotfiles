@@ -68,6 +68,10 @@ battery_id = "BAT1"
 # for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
 thermal_zone = "2"
 
+[eww.files]
+eww = "~/.config/eww"
+"eww/scripts/music_info" = { target = "~/.config/eww/scripts/music_info", type = "symbolic" }
+
 [dunst.files]
 dunst = "~/.config/dunst"
 
