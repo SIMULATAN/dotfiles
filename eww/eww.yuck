@@ -14,6 +14,7 @@
 (defvar br_reveal false)
 (defvar music_reveal false)
 (defvar wifi_rev false)
+(defvar bluetooth_rev false)
 (deflisten workspaces "./scripts/workspaces")
 (deflisten activews :initial 1 "./scripts/activews")
 
@@ -22,7 +23,8 @@
 (defpoll COL_WLAN :interval "1m" "./scripts/wifi --COL")
 (defpoll ESSID_WLAN :interval "1m" "./scripts/wifi --ESSID")
 (defpoll WLAN_ICON :interval "1m" "./scripts/wifi --ICON")
-
+(defpoll BLUETOOTH_DEVICE :interval "5s" "bluetoothctl devices Connected | cut -d ' ' -f 3-")
+(defpoll BLUETOOTH_CONNECTED :innitial "false" :interval "5s" "[ $(timeout 1 bluetoothctl devices Connected | wc -l) -gt 0 ] && echo 'true' || echo 'false'")
 
 (deflisten song "$HOME/.config/eww/scripts/music_info --song")
 (deflisten song_artist "./scripts/music_info --artist")
@@ -46,6 +48,22 @@
 			  :duration "350ms"
 	(label    :class "module_essid"
 			  :text ESSID_WLAN
+			  :orientation "h"
+			  )))))
+
+(defwidget bluetooth []
+  (eventbox :onhover "${eww} update bluetooth_rev=true"
+			  :onhoverlost "${eww} update bluetooth_rev=false"
+        ;; need the redirect for some reason..
+        :onclick "kitty bluetuith >/dev/null"
+        :visible BLUETOOTH_CONNECTED
+		(box :vexpand "false" :hexpand "false" :space-evenly "false"
+				(button :class "module-blue" :wrap "false" :limit-width 12 "󰂯")
+	(revealer :transition "slideright"
+			  :reveal bluetooth_rev
+			  :duration "350ms"
+	(label    :class "module_bluetooth"
+			  :text BLUETOOTH_DEVICE
 			  :orientation "h"
 			  )))))
 
@@ -167,6 +185,7 @@
 (bright)
 (volume)
 (wifi)
+(bluetooth)
 (sep)
 (bat)
 (mem)

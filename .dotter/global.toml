@@ -1,3 +1,8 @@
+[global.variables]
+terminal = "kitty"
+task_manager = "btop"
+file_manager = "ranger"
+
 [zsh.files]
 profiles = "~/.profiles/"
 "zsh/zshrc" = "~/.config/zsh/.zshrc"
@@ -14,13 +19,12 @@ java_dir = "~/.jdks"
 [starship.files]
 "starship/starship.toml" = "~/.config/starship.toml"
 
+[wm]
+depends = [ "global" ]
+
 [wm.variables]
-terminal = "kitty"
-# this default value will open kitty in the directory that the current focused windows is in
-# use this to prevent picom from matching flags as the wm class name
+# this default value will open the terminal in the directory that the current focused windows is in
 terminal_arguments = "`xcwd`"
-task_manager = "btop"
-file_manager = "ranger"
 
 [i3.files]
 i3 = "~/.config/i3"
@@ -67,6 +71,9 @@ keyboard_id = "AT Translated Set 2 keyboard"
 battery_id = "BAT1"
 # for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
 thermal_zone = "2"
+
+[eww]
+depends = [ "global" ]
 
 [eww.files]
 eww = "~/.config/eww"
