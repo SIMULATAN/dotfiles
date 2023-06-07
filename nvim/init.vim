@@ -20,6 +20,8 @@ set mouse=a
 
 set shiftwidth=4 " Use 4 spaces as tab size
 
+let mapleader=","
+
 " increment with Ctrl + Shift + X, analog to the default decrement with Ctrl + X
 noremap <C-S-x> <C-a>| " requires your terminal emulator to send \x1b[120;5u when pressing ctrl + shift + x | kitty example: map ctrl+shift+x send_text all \x1b[120;5u | '120' is the keycode for "x"
 
@@ -60,13 +62,40 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'lukas-reineke/indent-blankline.nvim' " the only proper indent guide
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'https://github.com/ycm-core/YouCompleteMe'
 Plug 'wakatime/vim-wakatime'
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'elkowar/yuck.vim'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'itspriddle/vim-shellcheck'
 call plug#end()
+
+" prevent shifting of line numbers
+set signcolumn=yes
+
+" switch between items with tab and shift-tab
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+" Applying code actions to the selected code block
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Alt-Enter to show quick fixes available
+nnoremap <A-cr> <Plug>(coc-codeaction-cursor)
+" apply code actions to whole buffer
+nmap <leader>as  <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+" Alt + Shift + Enter
+noremap <A-s-cr> <Plug>(coc-fix-current)
+
+" Jump between diagnostics
+nmap <silent> <F2> <Plug>(coc-diagnostic-next)
+nmap <silent> <S-F2> <Plug>(coc-diagnostic-prev)
 
 augroup my_dracula
   autocmd!

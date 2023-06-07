@@ -4,3 +4,5 @@ xclip
 # required for hexikonase (color display)
 # only recommended and not required because you can run vim without a color highlighter perfectly fine
 +go
+
++bash-language-server
