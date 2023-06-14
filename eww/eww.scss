@@ -189,9 +189,12 @@ scale trough {
   margin: 3px 0px 0px 5px;
 }
 
+.cal-out {
+  background-color: rgba(15, 15, 23, 0.7);
+}
+
 // Calendar
 .cal {
-  background-color: #0f0f17;
   font-family: JetBrainsMono Nerd Font;
   font-size: 18px;
   font-weight: normal;
@@ -268,7 +271,7 @@ calendar:indeterminate {
 }
 
 .sys_win {
-  background-color: #0f0f17;
+  background-color: rgba(15, 15, 23, 0.7);
 }
 
 .sys_bat {
@@ -301,7 +304,7 @@ calendar:indeterminate {
 }
 
 .music_pop {
-  background-color: #0f0f17;
+  background-color: rgba(15, 15, 23, 0.7);
   border-radius: 16px;
 }
 

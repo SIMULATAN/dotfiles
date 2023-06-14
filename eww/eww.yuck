@@ -288,7 +288,7 @@
                 :wrap false)))))
 
 (defwidget cal []
-	(box :class "cal" :orientation "v"
+	(box :class "cal cal-out" :orientation "v"
 	(box :class "cal-in"
 	(calendar :class "cal"
 			  :day calendar_day
@@ -358,7 +358,7 @@
 		(box :class "music_pop" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
 			(box :class "music_cover_art" :vexpand "false" :hexpand "false" :style "background-image: url('${cover_art}');")
 			(box :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
-				(label :halign "center" :class "music" :wrap "true" :limit-width 15 :justify "center" :text song)
+				(label :halign "center" :class "music" :wrap "true" :limit-width 10 :justify "center" :text song)
 				(label :halign "center" :class "music_artist" :wrap "true" :justify "center" :text song_artist)
 				(box :orientation "h" :spacing 15 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
 					(button :class "music_btn_prev" :onclick "./scripts/music_info --prev" "")
