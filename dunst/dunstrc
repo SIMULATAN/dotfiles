@@ -24,13 +24,13 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 300
+    width = 500
 
     # The maximum height of a single notification, excluding the frame.
     height = 300
 
     # Position the notification in the top right corner
-    origin = top-right
+    origin = top-center
 
     # Offset from the origin
     offset = 10x50
@@ -296,14 +296,14 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#282a36AE"
+    background = "#282a36FE"
     foreground = "#6272a4"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #new_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#282a36AE"
+    background = "#282a36FE"
     foreground = "#bd93f9"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
@@ -395,5 +395,18 @@
     format = "%s %n\n%b"
     history_ignore=yes
     fullscreen = show
+
+[grim-warning]
+    appname = flameshot
+    summary = "Flameshot Warning"
+    body = "grim*"
+    skip_display = true
+    history_ignore = yes
+
+[screenshot-aborted]
+    appname = flameshot
+    body = "Screenshot aborted."
+    skip_display = true
+    history_ignore = yes
 #
 # vim: ft=cfg
