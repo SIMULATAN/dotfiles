@@ -45,3 +45,10 @@ function mkbak() {
 }
 
 alias cdtmp='cd $(mktemp -d)'
+
+function op() {
+  selection="$(fzf)"
+  if [ -n "$selection" ]; then
+    xdg-open "$selection"
+  fi
+}
