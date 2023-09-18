@@ -109,7 +109,6 @@
                 :limit-width 2
                 :tooltip "using ${memory}% ram"
                 :show_truncated false
-                :wrap false
                 ""))))
 
 
