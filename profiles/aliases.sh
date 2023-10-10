@@ -9,8 +9,8 @@ alias gdc="git diff --cached"
 alias o="xdg-open"
 
 # v because of "vim"
-alias v="$EDITOR"
-alias e="$EDITOR"
+alias v='$EDITOR'
+alias e='$EDITOR'
 alias se="sudoedit"
 
 alias hf="history | fzf"
@@ -26,13 +26,11 @@ function fuck() {
 
 # walmart ripgrep
 function fif() {
-  grep -Ir "$@" *
+  grep -Ir "$@" ./*
 }
 
-alias ls='ls --color=auto'
 # human readable format - very handy
 alias lh="ls -h"
-alias grep="grep --color"
 
 # like gss (git status short), but with the branch name included
 alias gsb="git status -sb"
@@ -52,3 +50,9 @@ function op() {
     xdg-open "$selection"
   fi
 }
+
+alias ip='ip -color=auto'
+alias ls='ls --color=auto'
+alias grep="grep --color"
+alias diff='diff --color=auto'
+
