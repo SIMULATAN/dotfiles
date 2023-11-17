@@ -25,7 +25,7 @@ alt + space
 # "f" for windows because "w" is used for "wifi" and the german translation of "window" is "Fenster"
 # various rofi menus
 alt + r ; {h,p,w,v,c,e,s,f,d}
-	INPUT={sxhkd-keybinds,power-menu,wifi-menu,vpn,calc,emoji,ssh,window,windowcd} SCRIPT="$(command -v $INPUT.sh | head -n 1)" && [ ! -z "$SCRIPT" ] && ("$SCRIPT" || exit 0) || rofi -show $INPUT
+	INPUT={sxhkd-keybinds,power-menu,wifi-menu,vpn,calc,emoji,ssh,window,windowcd} SCRIPT="$(command -v $INPUT.sh | head -n 1)" && [ ! -z "$SCRIPT" ] && ("$SCRIPT" || exit 0) || rofi -show "$INPUT"
 
 {_,ctrl} + Print
 	{_,sleep 1 &&} flameshot gui
