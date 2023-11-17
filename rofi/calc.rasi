@@ -1,0 +1,12 @@
+mainbox {
+  children: [inputbar, message, listview];
+}
+
+message {
+  /* padding to the left and bottom */
+  padding: 12 0 0 20;
+}
+
+textbox {
+  text-color: @fg;
+}
