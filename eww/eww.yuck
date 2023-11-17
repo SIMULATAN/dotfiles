@@ -5,7 +5,7 @@
 (defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | head -1 | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 (defpoll brightness_percent :interval "5s" "brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
 (defpoll battery :interval "15s" "./scripts/battery --bat")
-(defpoll battery_status :interval "1m" "./scripts/battery --bat-st")
+(defpoll battery_status :interval "1s" "./scripts/battery --bat-st")
 (defpoll memory :interval "15s" "./scripts/memory")
 (defpoll memory_used_mb :interval "2m" "./scripts/mem-ad used")
 (defpoll memory_total_mb :interval "2m" "./scripts/mem-ad total")
