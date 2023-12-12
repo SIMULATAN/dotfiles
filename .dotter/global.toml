@@ -79,6 +79,12 @@ depends = [ "global" ]
 eww = "~/.config/eww"
 "eww/scripts/music_info" = { target = "~/.config/eww/scripts/music_info", type = "symbolic" }
 
+[waybar]
+depends = [ "global" ]
+
+[waybar.files]
+waybar = "~/.config/waybar"
+
 [dunst.files]
 dunst = "~/.config/dunst"
 
