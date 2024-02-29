@@ -77,6 +77,14 @@
     padding-right: 0px;
 }
 
+#battery {
+    padding-right: 6px;
+}
+#backlight {
+    padding-left: 4px;
+    padding-right: 0px;
+}
+
 
 /* -----------------------------------------------------------------------------
  * Module styles

@@ -56,7 +56,7 @@
         // Connected to AC
         "format": " {icon} {capacity}%", // Icon: bolt
         // Not connected to AC
-        "format-discharging": "{icon} {capacity}%",
+        "format-discharging": "{icon} {capacity}% ({time})",
         "format-icons": [
             "", // Icon: battery-full
             "", // Icon: battery-three-quarters
