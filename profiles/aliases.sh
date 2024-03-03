@@ -56,3 +56,5 @@ alias ls='ls --color=auto'
 alias grep="grep --color"
 alias diff='diff --color=auto'
 
+alias k="kubectl"
+alias kx="kubectx"
