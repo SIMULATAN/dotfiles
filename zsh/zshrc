@@ -25,16 +25,16 @@ setopt globstarshort
 # make avaliable to all sessions as an environment variable
 export DOTFILES_FOLDER="{{dotter.current_dir}}"
 
-for FILE in ~/.profiles*/* ; do source $FILE ; done
-
 {{#if java_dir}}
 if [ -d $(echo {{java_dir}}) ]; then
   # get latest JDK in java_dir
-  export JAVA_HOME={{java_dir}}/$(ls {{java_dir}} | sed '/-/!{s/$/_/}' | sort -V | sed 's/_$//' | tail -1)
+  export JAVA_HOME={{java_dir}}/$(ls {{java_dir}} | sort -t '-' -k 2 -n | tail -1)
   # add the bin dir of the found java home to the path
   [ ! -z $JAVA_HOME ] && PATH="$JAVA_HOME/bin:$PATH" || true
 fi
 {{/if}}
+
+for FILE in ~/.profiles*/* ; do source $FILE ; done
 
 bindkey -a '^ ' edit-command-line
 
