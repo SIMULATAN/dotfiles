@@ -19,6 +19,7 @@
     "height": 20,
 
     "modules-left": [
+        "custom/dunst",
         "hyprland/workspaces",
         "hyprland/submap"
     ],
@@ -43,6 +44,11 @@
     // Modules
     // -------------------------------------------------------------------------
 
+    "custom/dunst": {
+        "return-type": "json",
+        "exec": "$HOME/.local/bin/dunst-mute-status.sh",
+        "restart-interval": 1
+    },
     "hyprland/window": {
         "separate-outputs": true,
         "max-length": 50
@@ -149,7 +155,7 @@
           ""  // Icon: temperature-full
       ],
       "tooltip": true,
-        "input-filename": "thermal_zone2"
+      "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input"
     },
 
     "tray": {

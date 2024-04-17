@@ -65,7 +65,8 @@
 #network,
 #pulseaudio,
 #temperature,
-#tray {
+#tray,
+#custom-dunst {
     padding-left: 8px;
     padding-right: 8px;
     /* center vertically */
