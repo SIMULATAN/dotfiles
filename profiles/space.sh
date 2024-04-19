@@ -1,6 +1,6 @@
 function space() {
   function warn() {
-    echo "[WARNING] $*"
+    printf "\x1b[1;33m[WARNING] %s\n" "$*"
   }
 
   # user will be warned if permissions aren't given
