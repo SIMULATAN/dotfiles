@@ -46,7 +46,7 @@
 
     "custom/dunst": {
         "return-type": "json",
-        "exec": "$HOME/.local/bin/dunst-mute-status.sh",
+        "exec": "$HOME/.local/bin/dunst-mute-status_waybar.sh",
         "restart-interval": 1
     },
     "hyprland/window": {

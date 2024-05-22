@@ -1,0 +1,1 @@
+../waybar/dunst-mute-status.sh
