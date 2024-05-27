@@ -119,6 +119,17 @@ nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 " replace char mode)
 nnoremap <C-i> i_<Esc>r
 
+" persistent history / undo
+if !isdirectory("/tmp/.vim-undo-dir")
+    call mkdir("/tmp/.vim-undo-dir", "", 0700)
+endif
+set undodir=/tmp/.vim-undo-dir
+set undofile
+
+" make d delete and not cut text
+nnoremap d "_d
+vnoremap d "_d
+
 lua <<EOF
 vim.opt.list = true
 vim.opt.listchars:append("space:·")
@@ -140,7 +151,3 @@ require("ibl").setup {
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.svelte.setup{}
 EOF
-
-" make d delete and not cut text
-nnoremap d "_d
-vnoremap d "_d
