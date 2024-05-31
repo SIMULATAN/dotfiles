@@ -1,0 +1,1 @@
+alias ranger=". ranger"
