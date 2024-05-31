@@ -24,7 +24,7 @@ depends = [ "global" ]
 
 [wm.variables]
 # this default value will open the terminal in the directory that the current focused windows is in
-terminal_arguments = "`xcwd`"
+terminal_arguments = "\"`xcwd`\""
 
 [i3.files]
 i3 = "~/.config/i3"
