@@ -7,6 +7,12 @@ alias cls="clear"
 alias gdc="git diff --cached"
 
 alias o="xdg-open"
+function fo() {
+  file="$(fzf)"
+  if [[ -n "$file" ]]; then
+    xdg-open "$file"
+  fi
+}
 
 # v because of "vim"
 alias v='$EDITOR'
