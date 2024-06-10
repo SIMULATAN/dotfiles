@@ -4,7 +4,7 @@ function dotfiles() {
   fi
 
   INPUT=$(echo "$1" | tr '[:upper:]' '[:lower:]')
-  if [ "$INPUT" = "git" ] || [ "$INPUT" = "github" ] || [ "$INPUT" = "repo" ]; then
+  if [ "$INPUT" = "github" ] || [ "$INPUT" = "repo" ]; then
     function open_github() {
       cd "{{dotter.current_dir}}" || exit
       REPO="$(git config --get remote.origin.url)"
