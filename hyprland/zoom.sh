@@ -17,7 +17,7 @@ max_func="define max(a,b){
   }
 }"
 
-current_value="$(hyprctl getoption misc:cursor_zoom_factor -j | jq .float)"
+current_value="$(hyprctl getoption cursor:zoom_factor -j | jq .float)"
 new_value="$(echo "$max_func"'; max('"$current_value" "$operator" "$factor"',1)' | bc)"
 
-hyprctl keyword misc:cursor_zoom_factor "$new_value"
+hyprctl keyword cursor:zoom_factor "$new_value"
