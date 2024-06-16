@@ -17,25 +17,29 @@ wallpaper_files=(~/Pictures/wallpaper.*)
 wallpaper_location="${wallpaper_files[0]}"
 
 if [[ "$(loginctl show-session "$XDG_SESSION_ID" -p Type --value)" == "wayland" ]]; then
-  swaylock \
-    -i "$wallpaper_location" \
-    --ignore-empty-password \
-    --inside-ver-color=$selection$alpha \
-    --inside-wrong-color=$selection$alpha \
-    --inside-color=$selection$alpha \
-    --ring-ver-color=$green$alpha \
-    --ring-wrong-color=$red$alpha \
-    --ring-color=$blue$alpha \
-    --line-uses-ring \
-    --key-hl-color=$magenta$alpha \
-    --bs-hl-color=$orange$alpha \
-    --separator-color=$selection$alpha \
-    --clock \
-    --indicator \
-    --timestr="%H:%M:%S" \
-    --datestr="%e. %B %Y" \
-    --font="JetBrainsMono Nerd Font" \
-    --indicator-radius=120
+  if command -v hyprlock; then
+    hyprlock
+  else
+    swaylock \
+      -i "$wallpaper_location" \
+      --ignore-empty-password \
+      --inside-ver-color=$selection$alpha \
+      --inside-wrong-color=$selection$alpha \
+      --inside-color=$selection$alpha \
+      --ring-ver-color=$green$alpha \
+      --ring-wrong-color=$red$alpha \
+      --ring-color=$blue$alpha \
+      --line-uses-ring \
+      --key-hl-color=$magenta$alpha \
+      --bs-hl-color=$orange$alpha \
+      --separator-color=$selection$alpha \
+      --clock \
+      --indicator \
+      --timestr="%H:%M:%S" \
+      --datestr="%e. %B %Y" \
+      --font="JetBrainsMono Nerd Font" \
+      --indicator-radius=120
+  fi
 else
   if command -v betterlockscreen; then
     betterlockscreen -l
