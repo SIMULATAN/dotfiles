@@ -40,6 +40,10 @@ symbol = " "
 [dart]
 symbol = " "
 
+[kubernetes]
+disabled = false
+detect_extensions = [ "yml" ]
+
 [docker_context]
 symbol = " "
 
