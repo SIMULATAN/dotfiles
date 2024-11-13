@@ -1,10 +1,10 @@
 #! /bin/sh
 # made by eric murphy
 # https://github.com/ericmurphyxyz/archrice/blob/c7f0981545bf23a867d940ef719087185db07d8d/.local/bin/powermenu
-POWEROFF="  Power Off"
+POWEROFF="⏻  Power Off"
 RESTART="  Restart"
 # TODO: find better glyph - this one is too big and not consistent with the other ones
-SUSPEND=" Suspend"
+SUSPEND="󰤄  Suspend"
 LOCK="  Lock"
 
 chosen=$(printf "$POWEROFF\n$RESTART\n$SUSPEND\n$LOCK" | rofi -dmenu -i -theme-str '@import "power.rasi"')
