@@ -385,7 +385,7 @@ client.background       #F8F8F2
 #}
 
 # terrible way to do this, but unfortunately, it doesn't work without the piping into bash...
-exec_always --no-startup-id echo "if ! polybar-msg cmd quit; then pkill -f polybar; fi && polybar -c ~/.config/polybar/polybar.ini" | bash
+exec_always --no-startup-id polybar -c ~/.config/polybar/config.ini
 
 # run dmenu (dracula theme)
 bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
@@ -407,7 +407,7 @@ for_window [class="^.*"] border pixel 1
 # make ulauncher settings window floating per default
 for_window [class="Ulauncher"] floating enable
 
-exec --no-startup-id dunst -config ~/.config/dunst/dunst
+exec_always --no-startup-id dunst
 exec_always --no-startup-id notify-send "i3 Restarted" -u low -t 2000 -a i3
 
 # set background image

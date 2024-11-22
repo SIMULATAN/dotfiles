@@ -78,7 +78,7 @@ startOrRestart dunst
 startOrRestart picom -b
 ~/.fehbg
 
-xss-lock betterlockscreen -l
+xss-lock lock.sh
 
 startOrRestart playerctld daemon
 
