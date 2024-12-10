@@ -67,9 +67,11 @@ Plug 'uiiaoo/java-syntax.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'elkowar/yuck.vim'
+Plug 'rhysd/conflict-marker.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/nvim-lspconfig'
+Plug 'yasuhiroki/github-actions-yaml.vim'
 " Plug 'itspriddle/vim-shellcheck'
 call plug#end()
 
@@ -129,6 +131,20 @@ set undofile
 " make d delete and not cut text
 nnoremap d "_d
 vnoremap d "_d
+
+" disable the default highlight group
+let g:conflict_marker_highlight_group = ''
+
+" Include text after begin and end markers
+let g:conflict_marker_begin = '^<<<<<<<\+ .*$'
+let g:conflict_marker_common_ancestors = '^|||||||\+ .*$'
+let g:conflict_marker_end   = '^>>>>>>>\+ .*$'
+
+highlight ConflictMarkerBegin guibg=#2f7366
+highlight ConflictMarkerOurs guibg=#2e5049
+highlight ConflictMarkerTheirs guibg=#344f69
+highlight ConflictMarkerEnd guibg=#2f628e
+highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
 
 lua <<EOF
 vim.opt.list = true
