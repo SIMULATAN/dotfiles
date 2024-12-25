@@ -58,19 +58,15 @@
 }
 
 /* Each module */
-#battery,
-#cpu,
-#memory,
-#mode,
-#network,
-#pulseaudio,
-#temperature,
-#tray,
-#custom-dunst {
+.modules-right .module {
     padding-left: 8px;
     padding-right: 8px;
     /* center vertically */
     padding-top: 1px;
+}
+
+#pulseaudio {
+    padding-left: 5px;
 }
 
 #clock {
