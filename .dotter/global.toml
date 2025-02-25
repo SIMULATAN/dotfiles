@@ -107,5 +107,8 @@ ranger = "~/.config/ranger"
 "git/config" = "~/.config/git/config.global"
 "git/template" = "~/.config/git/template"
 
+[bluetuith.files]
+bluetuith = "~/.config/bluetuith"
+
 [helpers]
 bool = ".dotter/helpers/bool.rhai"
