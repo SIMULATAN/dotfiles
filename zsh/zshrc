@@ -34,7 +34,7 @@ if [ -d $(echo {{java_dir}}) ]; then
 fi
 {{/if}}
 
-for FILE in ~/.profiles*/* ; do source $FILE ; done
+for FILE in ~/.profiles*/*.sh ; do source $FILE ; done
 
 bindkey -a '^ ' edit-command-line
 
