@@ -164,6 +164,6 @@ require("ibl").setup {
   scope = { enabled = false },
 }
 
-require'lspconfig'.tsserver.setup{}
+require'lspconfig'.ts_ls.setup{}
 require'lspconfig'.svelte.setup{}
 EOF
