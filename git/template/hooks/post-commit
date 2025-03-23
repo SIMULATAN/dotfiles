@@ -5,12 +5,12 @@ MSG="$(git log -1 --format=format:'%an <%ae>')"
 COMMITTER="$(git log -1 --format=format:'%cn <%ce>')"
 
 if [ "$MSG" != "$COMMITTER" ]; then
-  $MSG="$MSG @ $COMMITTER"
+  MSG="$MSG @ $COMMITTER"
 fi
 
 GPG="$(git log -1 --format=format:'%GS')"
 
-if [[ ! -z "$GPG" ]]; then
+if [[ -n "$GPG" ]]; then
   MSG="$MSG (GPG: $GPG)"
 fi
 
