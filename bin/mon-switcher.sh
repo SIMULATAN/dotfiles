@@ -1,0 +1,1 @@
+../hyprland/mon-switcher.sh
