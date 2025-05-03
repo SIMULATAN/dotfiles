@@ -179,6 +179,12 @@
     color: #888888;
 }
 
+#workspaces button:hover {
+    color: white;
+    background: #6272A4;
+    box-shadow: unset;
+}
+
 #workspaces button.active {
     color: white;
     background-color: #44475A;
