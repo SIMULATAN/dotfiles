@@ -1,1 +1,1 @@
-alias ranger=". ranger"
+command -v ranger && alias ranger=". ranger"
