@@ -1,3 +1,5 @@
+[pull]
+	rebase = true
 [push]
 	autosetupremote = true
 [init]
