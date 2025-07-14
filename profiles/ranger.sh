@@ -1,1 +1,1 @@
-command -v ranger && alias ranger=". ranger"
+command -v ranger &>/dev/null && alias ranger=". ranger"
