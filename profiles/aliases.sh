@@ -6,7 +6,7 @@ alias cls="clear"
 # prime efficiency!
 alias gdc="git diff --cached"
 
-alias o="xdg-open"
+alias o='xdg-open "$(fzf)"'
 function fo() {
   file="$(fzf)"
   if [[ -n "$file" ]]; then
