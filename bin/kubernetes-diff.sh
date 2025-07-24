@@ -18,7 +18,7 @@ function join_by { local IFS="$1"; shift; echo "$*"; } # https://stackoverflow.c
 delete="$(join_by '|' "${deletes[@]}")"
 
 for file in "$1"/* "$2"/*; do
-  yq -i "$delete" "$file" # clean up LIVE and MERGED files
+  yq -Y -i "$delete" "$file" # clean up LIVE and MERGED files
 done |& grep -v '/*: no such file or directory' # https://stackoverflow.com/a/16321435/21038281
 
 diff_args=(
