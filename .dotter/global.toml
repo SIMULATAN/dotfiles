@@ -110,5 +110,8 @@ ranger = "~/.config/ranger"
 [bluetuith.files]
 bluetuith = "~/.config/bluetuith"
 
+[flameshot.files]
+flameshot = "~/.config/flameshot"
+
 [helpers]
 bool = ".dotter/helpers/bool.rhai"
