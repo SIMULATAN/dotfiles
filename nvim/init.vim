@@ -72,8 +72,13 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'yasuhiroki/github-actions-yaml.vim'
+
+Plug 'grafana/vim-alloy'
 " Plug 'itspriddle/vim-shellcheck'
 call plug#end()
+
+" using tabs will result in horrible formatting in k8s ConfigMaps
+autocmd FileType alloy setlocal shiftwidth=2 softtabstop=2 expandtab
 
 " prevent shifting of line numbers
 set signcolumn=yes
