@@ -127,10 +127,10 @@ nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap <C-i> i_<Esc>r
 
 " persistent history / undo
-if !isdirectory("/tmp/.vim-undo-dir")
-    call mkdir("/tmp/.vim-undo-dir", "", 0700)
+set undodir=/tmp/vim-undo-dir.$USER
+if !isdirectory(&undodir)
+    call mkdir(&undodir, "", 0700)
 endif
-set undodir=/tmp/.vim-undo-dir
 set undofile
 
 " make d delete and not cut text
