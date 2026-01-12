@@ -161,7 +161,7 @@
 
     "tray": {
         "icon-size": 15,
-        "spacing": 0
+        "spacing": 5
     }
 
 }
