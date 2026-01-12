@@ -19,6 +19,6 @@ set +e
 monitor_content="$(cat "$monitors_file")"
 echo "$monitor_content" \
   | sed "s/[#]\{0,1\}\(source = $prefix\)/#\1/" \
-  | sed "s/#\(source = $selected\)/\1/" \
+  | sed "s/#\(source = $selected.conf\)/\1/" \
   | tee "$monitors_file"
 
