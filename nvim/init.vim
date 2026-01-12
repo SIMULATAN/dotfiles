@@ -133,10 +133,6 @@ if !isdirectory(&undodir)
 endif
 set undofile
 
-" make d delete and not cut text
-nnoremap d "_d
-vnoremap d "_d
-
 " disable the default highlight group
 let g:conflict_marker_highlight_group = ''
 
