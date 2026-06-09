@@ -1,3 +1,4 @@
 monitors.conf
+monitors.lua
 mon-*.conf
 hyprpaper.conf
