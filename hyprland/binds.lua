@@ -1,9 +1,9 @@
 -- programs
-hl.bind("SUPER + T", hl.dsp.exec_raw("kitty"))
+hl.bind("SUPER + T", hl.dsp.exec_raw("{{ terminal }}"))
 hl.bind("SUPER + W", hl.dsp.exec_cmd("pkill waybar; waybar"))
-hl.bind("SUPER + B", hl.dsp.exec_cmd("kitty --name BlueTUIth bluetuith"))
-hl.bind("SUPER + A", hl.dsp.exec_cmd("kitty --name Pulsemixer pulsemixer"))
-hl.bind("SUPER + X", hl.dsp.exec_cmd("kitty --name 'Monitor Config' nvim '{{ dotter.current_dir }}/hyprland/monitors.lua'"))
+hl.bind("SUPER + B", hl.dsp.exec_cmd("{{ terminal }} --name BlueTUIth bluetuith"))
+hl.bind("SUPER + A", hl.dsp.exec_cmd("{{ terminal }} --name Pulsemixer pulsemixer"))
+hl.bind("SUPER + X", hl.dsp.exec_cmd("{{ terminal }} --name 'Monitor Config' nvim '{{ dotter.current_dir }}/hyprland/monitors.lua'"))
 hl.bind("SUPER + SHIFT + Q", hl.dsp.window.close())
 
 hl.bind("Print", hl.dsp.exec_raw("flameshot gui"))
@@ -16,6 +16,7 @@ hl.bind("SUPER + mouse:273", hl.dsp.window.resize())
 hl.bind("SUPER + ALT + L", hl.dsp.exec_raw("lock.sh"))
 hl.bind("SUPER + ALT + S", hl.dsp.exec_raw("suspend.sh"))
 hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
+hl.bind("SUPER + SHIFT + M", hl.dsp.exec_cmd("dunstctl set-paused toggle"))
 
 -- audio
 hl.bind(
@@ -40,6 +41,18 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause; volume.sh"), { l
 hl.bind("SUPER + F8", hl.dsp.exec_cmd("playerctl play-pause; volume.sh"), { locked = true })
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next; volume.sh"), { locked = true })
 hl.bind("SUPER + F9", hl.dsp.exec_cmd("playerctl next; volume.sh"), { locked = true })
+
+-- backlight brightness
+hl.bind(
+  "XF86MonBrightnessUp",
+  hl.dsp.exec_cmd("brightnessctl set -e +7.5%"),
+  { locked = true, repeating = true }
+)
+hl.bind(
+  "XF86MonBrightnessDown",
+  hl.dsp.exec_cmd("brightnessctl set -e 7.5%-"),
+  { locked = true, repeating = true }
+)
 
 -- zoom (source: https://wiki.hypr.land/Configuring/Advanced-and-Cool/Uncommon-tips-and-tricks/#glass-magnifier-zoom)
 local MAX_ZOOM = 5

@@ -57,9 +57,17 @@ animation("fade", 7)
 animation("workspaces", 3)
 animation("specialWorkspace", 5, "slidefadevert -50%")
 
+hl.gesture({ fingers = 3, direction = "horizontal", scale = 2, action = "workspace" })
+hl.gesture({ fingers = 3, direction = "down", mods = "ALT", action = "close" })
+hl.gesture({ fingers = 4, direction = "vertical", scale = 1.5, action = "fullscreen" })
+hl.gesture({ fingers = 4, direction = "horizontal", scale = 1.5, action = "fullscreen", mode = "maximize" })
+
+hl.gesture({ fingers = 2, direction = "pinch", mods = "ALT", action = "cursorZoom", zoom_level = 1, mode = "live" })
+
+require("dracula")
 require("workspaces")
+require("windows")
 require("binds")
 require("rofi")
 
 require("monitors")
-
