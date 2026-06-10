@@ -8,6 +8,8 @@ hl.bind("SUPER + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 hl.bind("SUPER + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
 hl.bind("SUPER + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
 
+hl.bind("SUPER + S", hl.dsp.layout("togglesplit"))
+
 -- window types
 hl.bind("SUPER + M", hl.dsp.window.fullscreen_state({ internal = 1, client = 1, action = "toggle" }))
 hl.bind("SUPER + SHIFT + F", hl.dsp.window.fullscreen_state({ internal = 2, client = 2, action = "toggle" }))
