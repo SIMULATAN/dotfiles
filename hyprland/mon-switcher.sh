@@ -22,3 +22,5 @@ echo "$monitor_content" \
   | sed "s/#\(source = $selected.conf\)/\1/" \
   | tee "$monitors_file"
 
+# fix window positions
+hyprctl reload
