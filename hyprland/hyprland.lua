@@ -15,6 +15,10 @@ hl.config({
     no_focus_fallback = true,
   },
 
+  dwindle = {
+    preserve_split = true,
+  },
+
   decoration = {
     rounding = 10,
     blur = {
