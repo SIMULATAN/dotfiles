@@ -13,7 +13,7 @@ for i=1,10 do
   hl.bind("ALT + SHIFT + " .. key, hl.dsp.window.move({ workspace = i + 10 }))
 end
 
-hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
-hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 
 hl.bind("SUPER + TAB", hl.dsp.focus({ workspace = "previous_per_monitor" }))
