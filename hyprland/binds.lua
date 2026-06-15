@@ -17,6 +17,7 @@ hl.bind("SUPER + ALT + L", hl.dsp.exec_raw("lock.sh"))
 hl.bind("SUPER + ALT + S", hl.dsp.exec_raw("suspend.sh"))
 hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind("SUPER + SHIFT + M", hl.dsp.exec_cmd("dunstctl set-paused toggle"))
+hl.bind("SUPER + SHIFT + F4", hl.dsp.exit())
 
 -- audio
 hl.bind(
