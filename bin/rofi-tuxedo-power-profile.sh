@@ -1,0 +1,1 @@
+../rofi/tuxedo-power-profile.sh
