@@ -21,6 +21,7 @@ hl.define_submap("rofi", function()
   rofi_submap("F", "rofi -show window")
   rofi_submap("D", "rofi-dockerhub.sh")
   rofi_submap("M", "mon-switcher.sh")
+  rofi_submap("T", "rofi-tuxedo-power-profile.sh")
   rofi_submap("Escape")
 end)
 
