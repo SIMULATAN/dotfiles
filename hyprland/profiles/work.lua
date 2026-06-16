@@ -5,12 +5,20 @@ hl.monitor({
   mode = "3440x1400@60",
 })
 
-hl.monitor({
-  output = "eDP-1",
-  position = "3440x480",
-  mode = "2560x1600@144",
-  scale = 1.3333,
-})
+local function init_monitors()
+  local monitors = #hl.get_monitors()
+
+  hl.monitor({
+    output = "eDP-1",
+    mode = "2560x1600@144",
+    position = monitors > 1 and "3440x480" or "0x0",
+    scale = monitors > 1 and 1.3333 or 1,
+  })
+end
+
+hl.on("config.reloaded", init_monitors)
+hl.on("monitor.added", init_monitors)
+hl.on("monitor.removed", init_monitors)
 
 for i=0,10 do
   hl.workspace_rule({
