@@ -29,7 +29,7 @@ hl.config({
   },
 
   cursor = {
-    zoom_rigid = true,
+    zoom_rigid = false,
   },
 
   input = {
