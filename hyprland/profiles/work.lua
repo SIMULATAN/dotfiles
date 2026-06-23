@@ -20,17 +20,10 @@ hl.on("config.reloaded", init_monitors)
 hl.on("monitor.added", init_monitors)
 hl.on("monitor.removed", init_monitors)
 
-for i=0,10 do
+for i=0,20 do
   hl.workspace_rule({
     workspace = tostring(i),
-    monitor = "DP-2",
-  })
-end
-
-for i=11,20 do
-  hl.workspace_rule({
-    workspace = tostring(i),
-    monitor = "eDP-1",
+    monitor = i <= 10 and "DP-2" or "eDP-1",
   })
 end
 
