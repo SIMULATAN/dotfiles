@@ -53,16 +53,17 @@ hl.config({
   },
 })
 
-local function animation(leaf, speed, style)
-    hl.animation({ enabled = true, curve = "default", spring = "default", leaf = leaf, speed = speed, style = style })
+hl.curve("easeInOutQuart", { type = "bezier", points = { {0.76, 0}, {0.24, 1} } })
+hl.curve("easeOutQuart", { type = "bezier", points = { {0.25, 1}, {0.5, 1} } })
+hl.curve("linear", { type = "bezier", points = { {0, 0}, {1, 1} } })
+local function animation(leaf, speed, style, bezier)
+    hl.animation({ enabled = true, bezier = bezier or "easeInOutQuart", leaf = leaf, speed = speed, style = style })
 end
 
-animation("windows", 4)
-animation("windowsOut", 7, "popin 80%")
-animation("border", 10)
-animation("fade", 7)
-animation("workspaces", 3)
-animation("specialWorkspace", 5, "slidefadevert -50%")
+animation("windows", 1.5)
+animation("windowsOut", 2, "popin 80%", "linear")
+animation("workspaces", 1)
+animation("specialWorkspace", 2, "slidefadevert -50%")
 
 hl.gesture({ fingers = 3, direction = "horizontal", scale = 2, action = "workspace" })
 hl.gesture({ fingers = 3, direction = "down", mods = "ALT", action = "close" })
