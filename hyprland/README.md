@@ -1,3 +1,8 @@
+## Neovim LSP Setup
+1. Install CoC
+2. Run `:CocInstall coc-lua`
+3. Restart Neovim
+
 ## Fixing NVIDIA slowdown with hybrid graphics
 Follow https://wiki.hypr.land/Configuring/Multi-GPU/#creating-consistent-device-paths-for-specific-cards
 Make sure to run the script twice (dedicated + integrated).
