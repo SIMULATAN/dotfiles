@@ -44,8 +44,11 @@ bspwm = "~/.config/bspwm"
 [sxhkd.files]
 "sxhkd/sxhkdrc" = "~/.config/sxhkd/sxhkdrc"
 
+[uwsm.files]
+uwsm = "~/.config/uwsm"
+
 [hyprland]
-depends = [ "wm" ]
+depends = [ "wm", "uwsm" ]
 
 [hyprland.files]
 hyprland = "~/.config/hypr"
